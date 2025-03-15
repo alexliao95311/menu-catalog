@@ -20,13 +20,13 @@ You can deploy your new Vite project with a single command from your terminal us
 $ vercel
 ```
 # Features 
-.	Local Business & Services Directory 🏪
+1.	Local Business & Services Directory 🏪
 	•	Listings for senior-friendly businesses and services in Chinatown.
 	•	Categories: Grocery stores, healthcare, community centers, etc.
-5.	Community Forum & Social Hub 🏡
+2.	Community Forum & Social Hub 🏡
 	•	Senior-friendly chat rooms with text-to-speech options.
 	•	Discussion boards for local events, hobbies, and support.
-8.	Health & Safety Resources 🏥
+3.	Health & Safety Resources 🏥
 	•	Guides on common health issues for seniors.
 	•	Quick access to local clinics and pharmacies.
 
