@@ -1,14 +1,14 @@
-# backend/routes/restaurant.py
-from typing import List  # Make sure this is imported
+from typing import List
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from models import Restaurant, MenuItem
 from database import SessionLocal
 from schemas import RestaurantCreate, Restaurant as RestaurantSchema
+import secrets
 
 router = APIRouter()
 
-# Dependency to get a DB session
+# Dependency to get a DB session.
 def get_db():
     db = SessionLocal()
     try:
@@ -23,11 +23,13 @@ def get_restaurants(db: Session = Depends(get_db)):
 
 @router.post("/", response_model=RestaurantSchema)
 def create_restaurant(restaurant: RestaurantCreate, db: Session = Depends(get_db)):
+    # If an admin password is not provided, generate one.
+    admin_password = restaurant.admin_password if restaurant.admin_password else secrets.token_hex(4)
     new_restaurant = Restaurant(
         name=restaurant.name,
         description=restaurant.description,
+        admin_password=admin_password
     )
-    # Create menu items if provided
     if restaurant.menu_items:
         for item in restaurant.menu_items:
             new_menu_item = MenuItem(
@@ -47,16 +49,20 @@ def update_restaurant(restaurant_id: int, restaurant_update: RestaurantCreate, d
     if not restaurant:
         raise HTTPException(status_code=404, detail="Restaurant not found")
     
-    # Update basic fields
+    # Ensure the client provides the correct admin password.
+    if not restaurant_update.admin_password or restaurant_update.admin_password != restaurant.admin_password:
+        raise HTTPException(status_code=403, detail="Invalid admin password")
+
+    # Update basic fields.
     restaurant.name = restaurant_update.name
     restaurant.description = restaurant_update.description
 
-    # Remove all existing menu items
+    # Remove all existing menu items.
     for menu_item in restaurant.menu_items:
         db.delete(menu_item)
     restaurant.menu_items = []
 
-    # Add new menu items from the update payload
+    # Add new menu items from the update payload.
     if restaurant_update.menu_items:
         for item in restaurant_update.menu_items:
             new_menu_item = MenuItem(
