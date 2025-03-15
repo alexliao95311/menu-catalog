@@ -1,5 +1,5 @@
-// frontend/src/components/RestaurantEditForm.tsx
 import React, { useState } from 'react';
+import './RestaurantEditForm.css'; // Import the new CSS file
 
 interface MenuItemForm {
   name: string;
@@ -59,34 +59,38 @@ export default function RestaurantEditForm({ restaurant, onEditComplete }: Resta
   };
 
   return (
-    <form onSubmit={handleSubmit} style={{ border: '1px solid #ddd', padding: '1rem', marginTop: '1rem' }}>
+    <form onSubmit={handleSubmit} className="restaurant-edit-form">
       <h3>Edit Restaurant</h3>
       <input 
         type="text" 
         value={name} 
         onChange={(e) => setName(e.target.value)}
         required 
+        className="input-field"
       /><br/>
       <textarea 
         value={description} 
         onChange={(e) => setDescription(e.target.value)}
         required
+        className="textarea-field"
       /><br/>
       <h4>Menu Items</h4>
       {menuItems.map((item: MenuItemForm, index: number) => (
-        <div key={index} style={{ marginBottom: '1rem' }}>
+        <div key={index} className="menu-item-container">
           <input 
             type="text" 
             placeholder="Dish Name" 
             value={item.name} 
             onChange={(e) => handleMenuItemChange(index, 'name', e.target.value)}
             required 
+            className="input-field"
           /><br/>
           <input 
             type="text" 
             placeholder="Dish Description" 
             value={item.description} 
             onChange={(e) => handleMenuItemChange(index, 'description', e.target.value)}
+            className="input-field"
           /><br/>
           <input 
             type="number" 
@@ -94,11 +98,12 @@ export default function RestaurantEditForm({ restaurant, onEditComplete }: Resta
             value={item.price} 
             onChange={(e) => handleMenuItemChange(index, 'price', e.target.value)}
             required 
+            className="input-field"
           /><br/>
         </div>
       ))}
-      <button type="button" onClick={addMenuItemField}>Add Another Menu Item</button><br/><br/>
-      <button type="submit">Update Restaurant</button>
+      <button type="button" onClick={addMenuItemField} className="add-menu-item-button">Add Another Menu Item</button><br/><br/>
+      <button type="submit" className="submit-button">Update Restaurant</button>
     </form>
   );
 }
