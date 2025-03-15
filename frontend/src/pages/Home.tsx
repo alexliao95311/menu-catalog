@@ -20,7 +20,11 @@ export default function Home() {
       <h2>Restaurants</h2>
       <div style={{ display: 'flex', flexWrap: 'wrap' }}>
         {restaurants.map((restaurant: any) => (
-          <RestaurantCard key={restaurant.id} restaurant={restaurant} />
+          <RestaurantCard 
+            key={restaurant.id} 
+            restaurant={restaurant} 
+            onRestaurantUpdated={fetchRestaurants} 
+          />
         ))}
       </div>
     </div>
