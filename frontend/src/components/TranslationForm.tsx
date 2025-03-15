@@ -22,7 +22,7 @@ export default function TranslationForm() {
 
   return (
     <div style={{ padding: '1rem', border: '1px solid #ddd', margin: '1rem' }}>
-      <h3>Translate Menu</h3>
+      <h3>Translate Menu 翻译菜单</h3>
       <textarea
         value={text}
         onChange={(e) => setText(e.target.value)}

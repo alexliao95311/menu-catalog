@@ -8,7 +8,10 @@ from fastapi import APIRouter, HTTPException, Depends, Request
 from pydantic import BaseModel
 from typing import Optional
 from dotenv import load_dotenv
-load_dotenv()
+import os
+
+# Adjust the path if necessary. This assumes main.py is in backend/
+load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), '.env'))
 
 # Configure logging
 logging.basicConfig(level=logging.DEBUG)

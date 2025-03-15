@@ -6,7 +6,11 @@ from fastapi.middleware.cors import CORSMiddleware
 from routes import restaurant, translate
 from database import engine, Base
 from dotenv import load_dotenv
-load_dotenv()
+import os
+
+# Adjust the path if necessary. This assumes main.py is in backend/
+load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), '.env'))
+
 
 # Configure logging
 logging.basicConfig(level=logging.DEBUG)
