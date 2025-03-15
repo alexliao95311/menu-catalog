@@ -1,3 +1,5 @@
 fastapi
 uvicorn
-typing
+SQLAlchemy
+python-multipart
+python-jose[cryptography]
