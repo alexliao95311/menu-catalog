@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
 import './RestaurantForm.css';
 
-export default function RestaurantForm({ onRestaurantAdded }: { onRestaurantAdded: () => void }) {
+interface RestaurantFormProps {
+  onRestaurantAdded: () => void;
+}
+
+export default function RestaurantForm({ onRestaurantAdded }: RestaurantFormProps) {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [menuItems, setMenuItems] = useState([{ name: '', description: '', price: '' }]);
+  const [adminPassword, setAdminPassword] = useState('');
 
   const handleMenuItemChange = (index: number, field: string, value: string) => {
     const updatedItems = [...menuItems];
@@ -18,7 +23,6 @@ export default function RestaurantForm({ onRestaurantAdded }: { onRestaurantAdde
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Format menu items: convert price string to float
     const formattedMenuItems = menuItems.map(item => ({
       name: item.name,
       description: item.description,
@@ -26,19 +30,19 @@ export default function RestaurantForm({ onRestaurantAdded }: { onRestaurantAdde
     }));
     const res = await fetch('http://127.0.0.1:8000/restaurants/', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         name,
         description,
-        menu_items: formattedMenuItems
-      })
+        admin_password: adminPassword,  // Include the admin password here
+        menu_items: formattedMenuItems,
+      }),
     });
     if (res.ok) {
-      // Clear the form and trigger a refresh in the parent component
+      // Optionally, clear fields and trigger refresh
       setName('');
       setDescription('');
+      setAdminPassword('');
       setMenuItems([{ name: '', description: '', price: '' }]);
       onRestaurantAdded();
     } else {

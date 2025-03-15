@@ -22,6 +22,7 @@ export default function RestaurantEditForm({ restaurant, onEditComplete }: Resta
       price: item.price.toString(),
     }))
   );
+  const [adminPassword, setAdminPassword] = useState(''); // New state for admin password
 
   const handleMenuItemChange = (index: number, field: keyof MenuItemForm, value: string) => {
     const updatedItems = [...menuItems];
@@ -48,6 +49,7 @@ export default function RestaurantEditForm({ restaurant, onEditComplete }: Resta
       body: JSON.stringify({
         name,
         description,
+        admin_password: adminPassword,  // Include admin password in update request
         menu_items: formattedMenuItems
       })
     });
@@ -104,6 +106,16 @@ export default function RestaurantEditForm({ restaurant, onEditComplete }: Resta
       ))}
       <button type="button" onClick={addMenuItemField} className="add-menu-item-button">Add Another Menu Item</button><br/><br/>
       <button type="submit" className="submit-button">Update Restaurant</button>
+      {/* Input for admin password required for editing */}
+      <input 
+        type="password" 
+        placeholder="Enter Admin Password" 
+        value={adminPassword} 
+        onChange={(e) => setAdminPassword(e.target.value)}
+        required
+      /><br/><br/>
+      
+      <button type="submit">Update Restaurant</button>
     </form>
   );
 }
