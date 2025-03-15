@@ -1,6 +1,8 @@
+// frontend/src/App.tsx
 import React, { useState } from 'react';
 import Home from './pages/Home';
 import RestaurantForm from './components/RestaurantForm';
+import TranslationForm from './components/TranslationForm';
 
 function App() {
   const [showForm, setShowForm] = useState(false);
@@ -27,6 +29,7 @@ function App() {
       </header>
       {showForm && <RestaurantForm onRestaurantAdded={handleRestaurantAdded} />}
       <Home refresh={refresh} />
+      <TranslationForm />
     </div>
   );
 }
