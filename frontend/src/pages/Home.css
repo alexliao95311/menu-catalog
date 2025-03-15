@@ -1,117 +1,98 @@
 /* General Body Styling */
-.home-container{
-    background-color: #051009;
-}
-
 body {
-    font-family: 'Roboto', sans-serif; /* Modern, professional sans-serif font */
+    font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
     display: flex;
-    background-color: #051009;
-    justify-content: flex-start; /* Align content from the top */
+    background-color: black; /* Fully black background */
+    justify-content: flex-start;
     flex-direction: column;
-    color: #ffffff; /* White text color */
-    height: 100vh; /* Ensures the body takes up full viewport height */
-    overflow-x: hidden; /* Prevents horizontal scrolling */
-}
+    color: white; /* White text */
+    height: 100vh;
+    overflow-x: hidden;
+  }
+  
 
 /* Header Styling */
 h2 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #ffffff; /* White text for the header */
-    text-align: center;
-    margin-top: 6rem; /* Adjusted for space under fixed navbar */
-    margin-bottom: 2rem;
-    letter-spacing: 1px;
-    text-transform: uppercase; /* Uppercase letters for a professional header look */
-    padding-bottom: 10px;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: white;
+  text-align: center;
+  margin-top: 6rem;
+  margin-bottom: 2rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding-bottom: 10px;
+  background-color: black; /
 }
 
 /* Restaurant Cards Container */
 .restaurants-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    gap: 2rem;
-    margin: 0 3rem; /* Added side margins for better alignment */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin: 0 3rem;
+  background-color: black; /
 }
 
 /* Restaurant Cards */
 .card {
-    background-color: rgb(205, 203, 203); /* Semi-transparent black background */
-    border-radius: 0; /* No border radius for square edges */
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: rgba(255, 255, 255, 0); /* Slightly transparent white background */
+  border-radius: 0;
+  outline: 3px solid rgb(95, 6, 6); /* Red outline with 3px thickness */
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card:hover {
-    transform: translateY(-8px); /* Slight lift effect for interactivity */
-    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.15); /* Deeper shadow on hover */
-}
-
-/* Card Image Styling */
-.card-img-top {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-}
-
-/* Card Body Styling */
-.card-body {
-    padding: 1.75rem; /* Increased padding for more spacious feel */
+  transform: translateY(-8px);
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.15);
 }
 
 /* Card Title */
 .card-title {
-    font-size: 1.85rem;
-    font-weight: 600;
-    color: #ffffff; /* White text for title */
-    margin-bottom: 0.75rem;
-    letter-spacing: 0.5px;
+  font-size: 1.85rem;
+  font-weight: 600;
+  color: white; /* White text */
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.5px;
 }
 
 /* Card Text */
 .card-text {
-    font-size: 1.05rem;
-    color: #ffffff; /* White text for better contrast */
-    line-height: 1.6; /* Increase line height for better readability */
-    margin-bottom: 0.75rem;
+  font-size: 1.05rem;
+  color: white; /* White text */
+  line-height: 1.6;
+  margin-bottom: 0.75rem;
 }
 
 /* Buttons - White Background */
 button {
-    background-color: #ffffff; /* White background */
-    color: #cfbdba; /* Dark red text */
-    padding: 0.7rem 1.5rem;
-    font-size: 1rem;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
+  padding: 0.7rem 1.5rem;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
 }
 
-button:hover {
-    background-color: #ddd; /* Light gray on hover */
-}
 
 /* Flex Layout for Restaurant Cards */
 .restaurant-card {
-    flex: 0 1 30%; /* Each card takes up 30% of the container width */
-    max-width: 320px;
-    min-width: 250px;
+  flex: 0 1 30%;
+  max-width: 320px;
+  min-width: 250px;
 }
 
 /* Media Queries for Responsiveness */
 @media (max-width: 1024px) {
-    .restaurant-card {
-        flex: 0 1 45%; /* 2 cards per row for medium screens */
-    }
+  .restaurant-card {
+    flex: 0 1 45%; /* 2 cards per row for medium screens */
+  }
 }
 
 @media (max-width: 768px) {
-    .restaurant-card {
-        flex: 0 1 100%; /* 1 card per row for small screens */
-    }
+  .restaurant-card {
+    flex: 0 1 100%; /* 1 card per row for small screens */
+  }
 }

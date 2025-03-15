@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Home from './pages/Home';
 import RestaurantForm from './components/RestaurantForm';
 import TranslationForm from './components/TranslationForm';
-import backgroundIMG from '/Users/sanjanagowda/menu-catalog/frontend/src/pages/red.jpg';
+import backgroundIMG from '/Users/sanjanagowda/menu-catalog/frontend/src/red.jpg'; 
 
 function App() {
   const [showForm, setShowForm] = useState(false);
@@ -22,9 +22,9 @@ function App() {
       {/* Navbar */}
     <nav style={{ 
       backgroundImage: `url(${backgroundIMG})`, 
-      backgroundSize: '120%', // Zooms out the image by increasing its size
+      backgroundSize: '50%', // Zooms out the image by increasing its size
       backgroundPosition: 'center', 
-      backgroundRepeat: 'no-repeat',
+      backgroundRepeat: 'repeat',
       height: '10%', 
       padding: '1rem 2rem', 
       display: 'flex', 
@@ -39,7 +39,7 @@ function App() {
       color: '#fff'
     }}>
         <div className="logo" style={{ fontSize: "1.5rem", fontWeight: "bold" }}>
-          <h1>Digital Menu App</h1>
+          <h1 style={{fontSize:"200%"}}>Digital Menu App</h1>
         </div>
         <div>
           
@@ -49,11 +49,14 @@ function App() {
               marginLeft: "1rem", 
               padding: "0.5rem 1rem", 
               fontSize: "1rem", 
-              backgroundColor: "#E3B23C", 
+             /* backgroundColor: "#E3B23C", */
+              backgroundColor: "white",
               color: "black", 
               border: "none", 
               cursor: "pointer", 
-              borderRadius: "5px" 
+              borderRadius: "5px" ,
+              height: "100%",
+              width:"100%"
             }}
           >
             {showForm ? "Close Form" : "Add Restaurant"}
