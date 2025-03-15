@@ -18,7 +18,7 @@ function App() {
           {showForm ? "Close Form" : "Add Restaurant"}
         </button>
       </header>
-      {showForm && <RestaurantForm onRestaurantAdded={() => setShowForm(false)} />}
+      {showForm && <RestaurantForm onRestaurantAdded={toggleForm} />}
       <Home />
     </div>
   );

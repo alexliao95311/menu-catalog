@@ -6,8 +6,18 @@ export default function RestaurantCard({ restaurant }: { restaurant: any }) {
     <div className="card">
       <h3>{restaurant.name}</h3>
       <p>{restaurant.description}</p>
-      {restaurant.menu && <p>Menu: {restaurant.menu}</p>}
-      {restaurant.price && <p>Price: ${restaurant.price}</p>}
+      {restaurant.menu_items && restaurant.menu_items.length > 0 && (
+        <div>
+          <h4>Menu Items:</h4>
+          <ul>
+            {restaurant.menu_items.map((item: any) => (
+              <li key={item.id}>
+                <strong>{item.name}</strong> - {item.description} (${item.price})
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 }
