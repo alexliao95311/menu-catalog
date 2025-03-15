@@ -74,6 +74,8 @@ npx expo start
 - Integration with delivery platforms.
 - Voice-assisted menu navigation for accessibility.
 - In-app ordering and payments.
+- Customer Profiles: Allow customers to create profiles where they can save favorite menu items, dietary restrictions, or preferred languages for a personalized experience.
+
 
 ## Contribution
 Feel free to contribute by submitting issues, feature requests, or pull requests.
