@@ -27,6 +27,7 @@ The **Chinatown Digital Menu App** is a web and mobile application that allows r
 - Insights into customer preferences.
 - Manage restaurant information (hours, contact, location).
 
+### 5. Dietary Restriction Filter
 ## Tech Stack
 - **Frontend:** React (Next.js for web), React Native (for mobile app)
 - **Backend:** FastAPI (Python)
@@ -34,6 +35,7 @@ The **Chinatown Digital Menu App** is a web and mobile application that allows r
 - **OCR & Translation:** Google Cloud Vision API, DeepL API
 - **Authentication:** Firebase Auth or JWT
 - **Hosting:** Vercel (for web), AWS/GCP (for backend)
+ 
 
 ## Installation
 ### Backend Setup
