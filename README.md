@@ -20,35 +20,33 @@ You can deploy your new Vite project with a single command from your terminal us
 $ vercel
 ```
 # Features 
-1️⃣ AI-Powered Live Translation
-	•	Multilingual Support: Supports Cantonese, Mandarin, English, and other common languages.
-	•	Speech-to-Text & Text-to-Speech: Converts spoken words into translated text/audio.
-	•	Offline Mode: Works without an internet connection for basic translations.
-	•	Auto-Detect Language: Instantly recognizes and translates speech.
+1.	Multi-Language Support 🗣️
+	•	Automatic language detection based on browser settings.
+	•	Manual language selection with Chinese (Cantonese/Mandarin) and English translations.
+2.	Emergency Contact System 🚨
+	•	One-tap emergency button to send a pre-filled SMS to trusted contacts.
+	•	Optional voice command activation for emergencies.
+	•	Geolocation tracking for emergency responders.
+3.	Periodic Check-Ins & Reminders ⏰
+	•	Daily or custom-scheduled wellness check-ins via notifications.
+	•	Alert system if a check-in is missed.
+4.	Local Business & Services Directory 🏪
+	•	Listings for senior-friendly businesses and services in Chinatown.
+	•	Categories: Grocery stores, healthcare, community centers, etc.
+5.	Community Forum & Social Hub 🏡
+	•	Senior-friendly chat rooms with text-to-speech options.
+	•	Discussion boards for local events, hobbies, and support.
+6.	Voice Navigation & Large Text Mode 🔊
+	•	Hands-free navigation using voice commands.
+	•	High-contrast mode and adjustable text sizes for better accessibility.
+7.	Appointment & Event Scheduler 📅
+	•	Easy booking system for community center events and medical appointments.
+	•	Reminders via notifications and SMS.
+8.	Health & Safety Resources 🏥
+	•	Guides on common health issues for seniors.
+	•	Quick access to local clinics and pharmacies.
 
-2️⃣ Emergency Contact & Safety System
-	•	One-Tap SOS Button: Sends an automatic SMS or call to pre-saved emergency contacts.
-	•	Location Sharing: Sends real-time GPS location to family members or emergency services.
-	•	Medical ID Profile: Stores health conditions, allergies, emergency contacts, and medications.
-	•	Automated Daily Check-Ins: Sends a notification to confirm safety; alerts family if unanswered.
-
-3️⃣ Community & Social Connection
-	•	Elder-Friendly Messaging: Simplified chat interface for easy communication.
-	•	Community Events Calendar: Lists local Chinatown activities, cultural events, and support groups.
-	•	Volunteer Support Matching: Connects elders with local volunteers for assistance.
-	•	Virtual Companion AI: AI chatbot for conversation and companionship.
-
-4️⃣ Business & Service Locator
-	•	Trusted Local Business Directory: Elder-friendly businesses, restaurants, clinics, and service centers.
-	•	Appointment Booking: Book medical appointments or request home services.
-	•	Live Business Assistance: AI chatbot helps elders call or message businesses.
-
-5️⃣ Accessibility & Usability Enhancements
-	•	Voice-Controlled Interface: Enables hands-free navigation using voice commands.
-	•	Large Text & High-Contrast Mode: Designed for seniors with vision impairments.
-	•	Simplified UI: Minimalist interface with large buttons and easy-to-use menus.
-
-6️⃣ Government & Social Services Integration
-	•	Benefits & Assistance Guide: AI-powered tool to help elders apply for social security, Medicare, and other benefits.
-	•	Translation Help for Forms: AI-assisted reading and filling out forms.
-	•	Live Support Hotline: Directly connects users to human volunteers or social workers.
+Technical Enhancements for PWA
+	•	Offline Mode: Store critical resources locally for use without an internet connection.
+	•	Push Notifications: Reminders, alerts, and emergency messages.
+	•	Home Screen Installation: Allows users to install the website as an app for quick access.
