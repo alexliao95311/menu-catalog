@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import RestaurantCard from '../components/RestaurantCard';
+import "./Home.css";
 
 interface HomeProps {
   refresh: boolean;
