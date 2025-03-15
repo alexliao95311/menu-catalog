@@ -3,3 +3,6 @@ uvicorn
 SQLAlchemy
 python-multipart
 python-jose[cryptography]
+requests
+aiohttp
+dotenv
