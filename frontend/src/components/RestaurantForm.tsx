@@ -1,5 +1,5 @@
-// frontend/src/components/RestaurantForm.tsx
 import React, { useState } from 'react';
+import './RestaurantForm.css';
 
 interface RestaurantFormProps {
   onRestaurantAdded: () => void;
@@ -51,55 +51,55 @@ export default function RestaurantForm({ onRestaurantAdded }: RestaurantFormProp
   };
 
   return (
-    <form onSubmit={handleSubmit} style={{ padding: '1rem', border: '1px solid #ddd', margin: '1rem' }}>
-      <h2>Add Restaurant</h2>
-      <input 
-        type="text" 
-        placeholder="Restaurant Name" 
-        value={name} 
-        onChange={(e) => setName(e.target.value)}
-        required
-      /><br/>
-      <textarea 
-        placeholder="Description" 
-        value={description} 
-        onChange={(e) => setDescription(e.target.value)}
-        required
-      /><br/>
-      <input 
-        type="password" 
-        placeholder="Admin Password" 
-        value={adminPassword} 
-        onChange={(e) => setAdminPassword(e.target.value)}
-        required
-      /><br/>
-      <h3>Menu Items</h3>
-      {menuItems.map((item, index) => (
-        <div key={index} style={{ marginBottom: '1rem' }}>
-          <input 
-            type="text" 
-            placeholder="Dish Name" 
-            value={item.name} 
-            onChange={(e) => handleMenuItemChange(index, 'name', e.target.value)}
-            required 
-          /><br/>
-          <input 
-            type="text" 
-            placeholder="Dish Description" 
-            value={item.description} 
-            onChange={(e) => handleMenuItemChange(index, 'description', e.target.value)}
-          /><br/>
-          <input 
-            type="number" 
-            placeholder="Price" 
-            value={item.price} 
-            onChange={(e) => handleMenuItemChange(index, 'price', e.target.value)}
-            required 
-          /><br/>
-        </div>
-      ))}
-      <button type="button" onClick={addMenuItemField}>Add Another Menu Item</button><br/><br/>
-      <button type="submit">Add Restaurant</button>
-    </form>
+    <div className="main-content">
+      <form onSubmit={handleSubmit} className="restaurant-form">
+        <h2>Add Restaurant</h2>
+        <input 
+          type="text" 
+          placeholder="Restaurant Name" 
+          value={name} 
+          onChange={(e) => setName(e.target.value)}
+          required
+          className="input-field"
+        /><br/>
+        <textarea 
+          placeholder="Description" 
+          value={description} 
+          onChange={(e) => setDescription(e.target.value)}
+          required
+          className="textarea-field"
+        /><br/>
+        <h3>Menu Items</h3>
+        {menuItems.map((item, index) => (
+          <div key={index} className="menu-item-container">
+            <input 
+              type="text" 
+              placeholder="Dish Name" 
+              value={item.name} 
+              onChange={(e) => handleMenuItemChange(index, 'name', e.target.value)}
+              required
+              className="input-field"
+            /><br/>
+            <input 
+              type="text" 
+              placeholder="Dish Description" 
+              value={item.description} 
+              onChange={(e) => handleMenuItemChange(index, 'description', e.target.value)}
+              className="input-field"
+            /><br/>
+            <input 
+              type="number" 
+              placeholder="Price" 
+              value={item.price} 
+              onChange={(e) => handleMenuItemChange(index, 'price', e.target.value)}
+              required
+              className="input-field"
+            /><br/>
+          </div>
+        ))}
+        <button type="button" onClick={addMenuItemField} className="add-menu-item-button">Add Another Menu Item</button><br/><br/>
+        <button type="submit" className="submit-button">Add Restaurant</button>
+      </form>
+    </div>
   );
 }
