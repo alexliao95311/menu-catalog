@@ -1,8 +1,11 @@
-// frontend/src/pages/Home.tsx
 import React, { useState, useEffect } from 'react';
 import RestaurantCard from '../components/RestaurantCard';
 
-export default function Home() {
+interface HomeProps {
+  refresh: boolean;
+}
+
+export default function Home({ refresh }: HomeProps) {
   const [restaurants, setRestaurants] = useState([]);
 
   const fetchRestaurants = async () => {
@@ -11,20 +14,17 @@ export default function Home() {
     setRestaurants(data);
   };
 
+  // Re-fetch whenever "refresh" changes.
   useEffect(() => {
     fetchRestaurants();
-  }, []);
+  }, [refresh]);
 
   return (
     <div style={{ padding: '1rem' }}>
       <h2>Restaurants</h2>
       <div style={{ display: 'flex', flexWrap: 'wrap' }}>
         {restaurants.map((restaurant: any) => (
-          <RestaurantCard 
-            key={restaurant.id} 
-            restaurant={restaurant} 
-            onRestaurantUpdated={fetchRestaurants} 
-          />
+          <RestaurantCard key={restaurant.id} restaurant={restaurant} onRestaurantUpdated={fetchRestaurants} />
         ))}
       </div>
     </div>

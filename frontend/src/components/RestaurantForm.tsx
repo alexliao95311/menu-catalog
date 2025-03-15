@@ -1,10 +1,15 @@
 // frontend/src/components/RestaurantForm.tsx
 import React, { useState } from 'react';
 
-export default function RestaurantForm({ onRestaurantAdded }: { onRestaurantAdded: () => void }) {
+interface RestaurantFormProps {
+  onRestaurantAdded: () => void;
+}
+
+export default function RestaurantForm({ onRestaurantAdded }: RestaurantFormProps) {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [menuItems, setMenuItems] = useState([{ name: '', description: '', price: '' }]);
+  const [adminPassword, setAdminPassword] = useState('');
 
   const handleMenuItemChange = (index: number, field: string, value: string) => {
     const updatedItems = [...menuItems];
@@ -18,7 +23,6 @@ export default function RestaurantForm({ onRestaurantAdded }: { onRestaurantAdde
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Format menu items: convert price string to float
     const formattedMenuItems = menuItems.map(item => ({
       name: item.name,
       description: item.description,
@@ -26,19 +30,19 @@ export default function RestaurantForm({ onRestaurantAdded }: { onRestaurantAdde
     }));
     const res = await fetch('http://127.0.0.1:8000/restaurants/', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         name,
         description,
-        menu_items: formattedMenuItems
-      })
+        admin_password: adminPassword,  // Include the admin password here
+        menu_items: formattedMenuItems,
+      }),
     });
     if (res.ok) {
-      // Clear the form and trigger a refresh in the parent component
+      // Optionally, clear fields and trigger refresh
       setName('');
       setDescription('');
+      setAdminPassword('');
       setMenuItems([{ name: '', description: '', price: '' }]);
       onRestaurantAdded();
     } else {
@@ -62,6 +66,13 @@ export default function RestaurantForm({ onRestaurantAdded }: { onRestaurantAdde
         onChange={(e) => setDescription(e.target.value)}
         required
       /><br/>
+      <input 
+        type="password" 
+        placeholder="Admin Password" 
+        value={adminPassword} 
+        onChange={(e) => setAdminPassword(e.target.value)}
+        required
+      /><br/>
       <h3>Menu Items</h3>
       {menuItems.map((item, index) => (
         <div key={index} style={{ marginBottom: '1rem' }}>
@@ -70,7 +81,7 @@ export default function RestaurantForm({ onRestaurantAdded }: { onRestaurantAdde
             placeholder="Dish Name" 
             value={item.name} 
             onChange={(e) => handleMenuItemChange(index, 'name', e.target.value)}
-            required
+            required 
           /><br/>
           <input 
             type="text" 
@@ -83,7 +94,7 @@ export default function RestaurantForm({ onRestaurantAdded }: { onRestaurantAdde
             placeholder="Price" 
             value={item.price} 
             onChange={(e) => handleMenuItemChange(index, 'price', e.target.value)}
-            required
+            required 
           /><br/>
         </div>
       ))}
