@@ -47,7 +47,7 @@ export default function RestaurantCard({ restaurant, onRestaurantUpdated }: Rest
   const toggleEdit = () => setEditing((prev) => !prev);
 
   return (
-    <div className="card" style={{ margin: "1rem", padding: "1rem", border: "1px solid #ddd" }}>
+    <div className="card" style={{}}>
       <h3>{restaurant.name}</h3>
       <p>{restaurant.description}</p>
       {restaurant.menu_items && restaurant.menu_items.length > 0 ? (
@@ -71,7 +71,7 @@ export default function RestaurantCard({ restaurant, onRestaurantUpdated }: Rest
         {editing ? "Cancel Edit" : "Edit"}
       </button>
       {translatedMenu && (
-        <div style={{ marginTop: "1rem", border: "1px solid #ccc", padding: "0.5rem" }}>
+        <div style={{}}>
           <h4>Translated Menu (Chinese Simplified):</h4>
           <pre style={{ whiteSpace: "pre-wrap" }}>{translatedMenu}</pre>
         </div>
