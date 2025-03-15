@@ -3,6 +3,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from models import Restaurant
 from database import SessionLocal
+from schemas import RestaurantCreate
 
 router = APIRouter()
 
@@ -20,14 +21,13 @@ def get_restaurants(db: Session = Depends(get_db)):
     return restaurants
 
 @router.post("/")
-def create_restaurant(
-    name: str,
-    description: str = None,
-    menu: str = None,
-    price: float = None,
-    db: Session = Depends(get_db)
-):
-    new_restaurant = Restaurant(name=name, description=description, menu=menu, price=price)
+def create_restaurant(restaurant: RestaurantCreate, db: Session = Depends(get_db)):
+    new_restaurant = Restaurant(
+        name=restaurant.name,
+        description=restaurant.description,
+        menu=restaurant.menu,
+        price=restaurant.price,
+    )
     db.add(new_restaurant)
     db.commit()
     db.refresh(new_restaurant)
