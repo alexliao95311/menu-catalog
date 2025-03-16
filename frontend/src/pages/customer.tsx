@@ -98,7 +98,7 @@ export default function Tourists({ refresh }: TouristsProps) {
         console.error("Error uploading menu:", error);
         errorTimeoutRef.current = window.setTimeout(() => {
           setErrorMessage("Error uploading menu");
-        }, 2000); 
+        }, 2000);
       }
       setUploading(false);
       fetchRestaurants();
@@ -106,15 +106,28 @@ export default function Tourists({ refresh }: TouristsProps) {
   };
 
   return (
-    <div style={{ padding: '1rem', backgroundColor: 'black', height: '100vh' }}>
-      <h2 style={{ color: "white", backgroundColor: 'black', fontSize: "300%" }}>Restaurants for Tourists</h2>
+    <div style={{ padding: '1rem', height: '100vh' }}>
+      <h2 style={{ color: "white", fontSize: "300%" }}>Restaurants for Tourists</h2>
 
-      <button onClick={handleUploadMenuClick} disabled={uploading}>
-        {uploading ? "Processing..." : "Upload Menu"}
-      </button>
+      {/* Centered Upload Menu Button */}
+      <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1rem' }}>
+        <button onClick={handleUploadMenuClick} disabled={uploading}
+          style={{
+            padding: '0.5rem 1rem',
+            fontSize: '1rem',
+            color: 'white',
+            border: 'none',
+            cursor: 'pointer',
+            borderRadius: '5px',
+          }}
+        >
+          {uploading ? "Processing..." : "Upload Menu"}
+        </button>
+      </div>
 
-      {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-      <div style={{ backgroundColor: 'black', display: 'flex', flexWrap: 'wrap' }}>
+      {errorMessage && <p style={{ color: 'red', textAlign: 'center' }}>{errorMessage}</p>}
+      
+      <div style={{ display: 'flex', flexWrap: 'wrap' }}>
         {restaurants.map((restaurant: any) => (
           <RestaurantCard key={restaurant.id} restaurant={restaurant} />
         ))}
