@@ -16,7 +16,9 @@ export default function RestaurantFormPopup({ initialData, onClose, onRestaurant
     <div className="popup-overlay">
       <div className="popup-content">
         <button onClick={onClose} className="close-button">X</button>
-        <RestaurantForm onRestaurantAdded={onRestaurantAdded} initialData={initialData} />
+        <RestaurantForm onRestaurantAdded={onRestaurantAdded} initialData={initialData} onClose={function (): void {
+          throw new Error('Function not implemented.');
+        } } />
       </div>
     </div>
   );
