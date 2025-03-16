@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import ViewRestaurants from './pages/ViewRestaurants';
+import AboutPage from './pages/About';
 import RestaurantForm from './components/RestaurantForm';
 import backgroundIMG from './red.jpg';
 
@@ -52,6 +53,7 @@ function App() {
             zIndex: 1000,
             boxShadow: '0 4px 8px rgba(0, 0, 0, 0.3)',
             color: '#fff',
+            fontFamily: 'Poppins, sans-serif', /* Apply Poppins font to navbar */
           }}
         >
           <div className="logo" style={{ fontSize: '1.5rem', fontWeight: 'bold' }}>
@@ -60,13 +62,23 @@ function App() {
           <div>
             <Link
               to="/"
-              style={{ marginRight: '1rem', color: 'white', textDecoration: 'none' }}
+              style={{
+                marginRight: '1rem',
+                color: 'white',
+                textDecoration: 'none',
+                fontFamily: 'Poppins, sans-serif', /* Apply Poppins font to links */
+              }}
             >
               Home
             </Link>
             <Link
               to="/restaurants"
-              style={{ marginRight: '1rem', color: 'white', textDecoration: 'none' }}
+              style={{
+                marginRight: '1rem',
+                color: 'white',
+                textDecoration: 'none',
+                fontFamily: 'Poppins, sans-serif', /* Apply Poppins font to links */
+              }}
             >
               Restaurants
             </Link>
@@ -83,6 +95,7 @@ function App() {
                 borderRadius: '5px',
                 height: '100%',
                 width: '100%',
+                fontFamily: 'Poppins, sans-serif', /* Apply Poppins font to button */
               }}
             >
               {showForm ? 'Close Form' : 'Add Restaurant'}
@@ -101,6 +114,7 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/restaurants" element={<ViewRestaurants refresh={refresh} />} />
+            <Route path="/about" element={<AboutPage refresh={refresh} />} />
           </Routes>
           <TranslationForm />
         </div>
