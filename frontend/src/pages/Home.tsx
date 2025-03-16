@@ -16,6 +16,8 @@ export default function Home({ refresh }: HomeProps) {
   const [cameraActive, setCameraActive] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  // Ref to store the error timeout ID
+  const errorTimeoutRef = useRef<number | null>(null);
 
   const fetchRestaurants = async () => {
     try {
@@ -72,24 +74,36 @@ export default function Home({ refresh }: HomeProps) {
       // Stop camera and hide overlay
       stopCamera();
       setCameraActive(false);
-      
+
       setUploading(true);
+
       try {
         const response = await fetch('http://127.0.0.1:8000/upload_menu/', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ image: imageDataUrl })
         });
+
+        // If the response is not okay, throw an error.
         if (!response.ok) {
           throw new Error(`Server error: ${response.status}`);
         }
+
         const data = await response.json();
-        // Save JSON and show the form popup with pre-filled data
+
+        // Clear any pending error message timeout since we have correct data
+        if (errorTimeoutRef.current) {
+          clearTimeout(errorTimeoutRef.current);
+          errorTimeoutRef.current = null;
+        }
         setMenuJson(data);
         setShowFormPopup(true);
       } catch (error) {
         console.error("Error uploading menu:", error);
-        setErrorMessage("Error uploading menu");
+        // Delay showing the error message to avoid false positives if the correct response comes in shortly
+        errorTimeoutRef.current = window.setTimeout(() => {
+          setErrorMessage("Error uploading menu");
+        }, 2000); // Adjust delay as needed
       }
       setUploading(false);
       fetchRestaurants();
@@ -98,12 +112,12 @@ export default function Home({ refresh }: HomeProps) {
 
   return (
     <div style={{ padding: '1rem', backgroundColor: 'black', height: '100vh' }}>
-      <h2 style={{color:"white",backgroundColor: 'black',fontSize:"300%"}}>Restaurants</h2>
+      <h2 style={{ color: "white", backgroundColor: 'black', fontSize: "300%" }}>Restaurants</h2>
       <button onClick={handleUploadMenuClick} disabled={uploading}>
         {uploading ? "Processing..." : "Upload Menu"}
       </button>
       {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-      <div style={{backgroundColor: 'black',display: 'flex', flexWrap: 'wrap', }}>
+      <div style={{ backgroundColor: 'black', display: 'flex', flexWrap: 'wrap' }}>
         {restaurants.map((restaurant: any) => (
           <RestaurantCard key={restaurant.id} restaurant={restaurant} onRestaurantUpdated={fetchRestaurants} />
         ))}
@@ -117,7 +131,7 @@ export default function Home({ refresh }: HomeProps) {
         }}>
           <video ref={videoRef} style={{ width: '80%', maxWidth: '400px' }} />
           <button onClick={captureAndProcess} style={{ marginTop: '1rem' }}>
-            Capture & Process Menu
+            Capture &amp; Process Menu
           </button>
           <canvas ref={canvasRef} style={{ display: 'none' }} />
           <button onClick={() => { stopCamera(); setCameraActive(false); }} style={{ marginTop: '1rem' }}>
