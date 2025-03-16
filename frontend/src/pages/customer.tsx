@@ -110,26 +110,6 @@ export default function Tourists({ refresh }: TouristsProps) {
   return (
     <div style={{ padding: '1rem', height: '100vh' }}>
       <h2 style={{ color: "white", fontSize: "300%" }}>Restaurants for Tourists</h2>
-
-      {/* Centered Upload Menu Button */}
-      <div style={{ width: "100%", display: 'flex', justifyContent: 'center', marginBottom: '1rem' }}>
-        <button 
-          onClick={handleUploadMenuClick} 
-          disabled={uploading}
-          style={{
-            padding: '0.5rem 1rem',
-            fontSize: '1rem',
-            color: 'white',
-            border: 'none',
-            cursor: 'pointer',
-            borderRadius: '5px',
-          }}
-        >
-          {uploading ? "Processing..." : "Upload Menu"}
-        </button>
-      </div>
-
-      {errorMessage && <p style={{ color: 'red', textAlign: 'center' }}>{errorMessage}</p>}
       
       <div style={{ display: 'flex', flexWrap: 'wrap' }}>
         {restaurants.map((restaurant: any) => (

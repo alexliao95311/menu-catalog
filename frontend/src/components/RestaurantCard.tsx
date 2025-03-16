@@ -15,9 +15,9 @@ export default function RestaurantCard({ restaurant, onRestaurantUpdated }: Rest
   const [targetLanguage, setTargetLanguage] = useState<string>("zh-CN");
   const [showQrModal, setShowQrModal] = useState(false);
 
-  // Use Vite's environment variable system
+  // Use Vite's environment variable system for API URL
   const API_URL = import.meta.env.VITE_REACT_APP_API_URL || "http://127.0.0.1:8000";
-  console.log(API_URL)
+
   // Function to handle translation of the restaurant's menu items.
   const handleTranslateMenu = async () => {
     setTranslating(true);
@@ -51,8 +51,8 @@ export default function RestaurantCard({ restaurant, onRestaurantUpdated }: Rest
 
   const toggleEdit = () => setEditing((prev) => !prev);
 
-  // Create a unique URL for this restaurant's menu.
-  const qrUrl = `${window.location.origin}/restaurants/${restaurant.id}`;
+  // Use the environment variable for the QR code URL as well.
+  const qrUrl = `${API_URL}/restaurants/${restaurant.id}`;
 
   return (
     <div className="card">
