@@ -1,17 +1,16 @@
 /* General Body Styling */
 body {
-    font-family: 'Roboto', sans-serif;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    background-color: black; /* Fully black background */
-    justify-content: flex-start;
-    flex-direction: column;
-    color: white; /* White text */
-    height: 100vh;
-    overflow-x: hidden;
-  }
-  
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  color: white; /* White text */
+  height: 100vh;
+  overflow-x: hidden;
+  background: url('src/red.jpg') no-repeat center center/cover;
+}
 
 /* Header Styling */
 h2 {
@@ -24,7 +23,6 @@ h2 {
   letter-spacing: 1px;
   text-transform: uppercase;
   padding-bottom: 10px;
-  background-color: black; /
 }
 
 /* Restaurant Cards Container */
@@ -33,16 +31,17 @@ h2 {
   flex-wrap: wrap;
   justify-content: space-evenly;
   margin: 0 3rem;
-  background-color: black; /
 }
 
 /* Restaurant Cards */
 .card {
-  background-color: rgba(255, 255, 255, 0); /* Slightly transparent white background */
+  background-color: rgba(3, 3, 3, 0.673); /* Slightly transparent white background */
   border-radius: 0;
   outline: 3px solid rgb(95, 6, 6); /* Red outline with 3px thickness */
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 320px; /* Increase height */
+  width: 320px; /* Increase width */
 }
 
 .card:hover {
@@ -76,7 +75,6 @@ button {
   transition: background-color 0.3s, color 0.3s;
 }
 
-
 /* Flex Layout for Restaurant Cards */
 .restaurant-card {
   flex: 0 1 30%;
@@ -87,12 +85,12 @@ button {
 /* Media Queries for Responsiveness */
 @media (max-width: 1024px) {
   .restaurant-card {
-    flex: 0 1 45%; /* 2 cards per row for medium screens */
+      flex: 0 1 45%; /* 2 cards per row for medium screens */
   }
 }
 
 @media (max-width: 768px) {
   .restaurant-card {
-    flex: 0 1 100%; /* 1 card per row for small screens */
+      flex: 0 1 100%; /* 1 card per row for small screens */
   }
 }

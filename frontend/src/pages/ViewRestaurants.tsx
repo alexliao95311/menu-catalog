@@ -7,7 +7,7 @@ interface HomeProps {
   refresh: boolean;
 }
 
-export default function Home({ refresh }: HomeProps) {
+export default function ViewRestaurants({ refresh }: HomeProps) {
   const [restaurants, setRestaurants] = useState([]);
   const [uploading, setUploading] = useState(false);
   const [menuJson, setMenuJson] = useState(null);  // JSON from /upload_menu/
@@ -16,8 +16,8 @@ export default function Home({ refresh }: HomeProps) {
   const [cameraActive, setCameraActive] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  // Ref to store the error timeout ID
   const errorTimeoutRef = useRef<number | null>(null);
+  const [showForm, setShowForm] = useState(false);  // State for showing the restaurant form
 
   const fetchRestaurants = async () => {
     try {
@@ -84,7 +84,6 @@ export default function Home({ refresh }: HomeProps) {
           body: JSON.stringify({ image: imageDataUrl })
         });
 
-        // If the response is not okay, throw an error.
         if (!response.ok) {
           throw new Error(`Server error: ${response.status}`);
         }
@@ -100,22 +99,54 @@ export default function Home({ refresh }: HomeProps) {
         setShowFormPopup(true);
       } catch (error) {
         console.error("Error uploading menu:", error);
-        // Delay showing the error message to avoid false positives if the correct response comes in shortly
         errorTimeoutRef.current = window.setTimeout(() => {
           setErrorMessage("Error uploading menu");
-        }, 2000); // Adjust delay as needed
+        }, 2000); 
       }
       setUploading(false);
       fetchRestaurants();
     }
   };
 
+  const toggleForm = () => {
+    setShowForm((prev) => !prev);
+  };
+
   return (
     <div style={{ padding: '1rem', backgroundColor: 'black', height: '100vh' }}>
       <h2 style={{ color: "white", backgroundColor: 'black', fontSize: "300%" }}>Restaurants</h2>
+
+      {/* Add Restaurant Button */}
+      <button
+        onClick={toggleForm}
+        style={{
+          marginLeft: '1rem',
+          padding: '0.5rem 1rem',
+          fontSize: '1rem',
+          backgroundColor: 'white',
+          color: 'black',
+          border: 'none',
+          cursor: 'pointer',
+          borderRadius: '5px',
+        }}
+      >
+        {showForm ? 'Close Form' : 'Add Restaurant'}
+      </button>
+
+      {showForm && (
+        <RestaurantFormPopup
+          onClose={toggleForm}
+          onRestaurantAdded={() => {
+            setShowForm(false);
+            fetchRestaurants();
+          }}
+        />
+      )}
+
       <button onClick={handleUploadMenuClick} disabled={uploading}>
         {uploading ? "Processing..." : "Upload Menu"}
       </button>
+
       {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
       <div style={{ backgroundColor: 'black', display: 'flex', flexWrap: 'wrap' }}>
         {restaurants.map((restaurant: any) => (

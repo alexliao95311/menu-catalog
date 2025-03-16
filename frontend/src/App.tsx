@@ -15,9 +15,7 @@ const TranslationForm: React.FC = () => {
 };
 
 function App() {
-  const [showForm, setShowForm] = useState(false);
   const [refresh, setRefresh] = useState(false);
-
   const toggleForm = () => {
     setShowForm((prev) => !prev);
   };
@@ -51,9 +49,8 @@ function App() {
             left: 0,
             right: 0,
             zIndex: 1000,
-            boxShadow: '0 4px 8px rgba(0, 0, 0, 0.3)',
-            color: '#fff',
-            fontFamily: 'Poppins, sans-serif', /* Apply Poppins font to navbar */
+            boxShadow: '100px 10px 20px rgba(0, 0, 0, 0.3)',
+            color: '#fff'
           }}
         >
           <div className="logo" style={{ fontSize: '1.5rem', fontWeight: 'bold' }}>
@@ -62,48 +59,13 @@ function App() {
           <div>
             <Link
               to="/"
-              style={{
-                marginRight: '1rem',
-                color: 'white',
-                textDecoration: 'none',
-                fontFamily: 'Poppins, sans-serif', /* Apply Poppins font to links */
-              }}
+              style={{ marginRight: '1rem', color: 'white', textDecoration: 'none', fontSize:"20px"}}
             >
               Home
             </Link>
-            <Link
-              to="/restaurants"
-              style={{
-                marginRight: '1rem',
-                color: 'white',
-                textDecoration: 'none',
-                fontFamily: 'Poppins, sans-serif', /* Apply Poppins font to links */
-              }}
-            >
-              Restaurants
-            </Link>
-            <button
-              onClick={toggleForm}
-              style={{
-                marginLeft: '1rem',
-                padding: '0.5rem 1rem',
-                fontSize: '1rem',
-                backgroundColor: 'white',
-                color: 'black',
-                border: 'none',
-                cursor: 'pointer',
-                borderRadius: '5px',
-                height: '100%',
-                width: '100%',
-                fontFamily: 'Poppins, sans-serif', /* Apply Poppins font to button */
-              }}
-            >
-              {showForm ? 'Close Form' : 'Add Restaurant'}
-            </button>
           </div>
         </nav>
 
-        {/* Prevent content from being hidden under fixed navbar */}
         <div style={{ paddingTop: '80px' }}>
           {showForm && (
             <RestaurantForm
