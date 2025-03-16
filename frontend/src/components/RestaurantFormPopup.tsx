@@ -15,7 +15,6 @@ export default function RestaurantFormPopup({ initialData, onClose, onRestaurant
   return (
     <div className="popup-overlay">
       <div className="popup-content">
-        <button onClick={onClose} className="close-button">X</button>
         <RestaurantForm onRestaurantAdded={onRestaurantAdded} initialData={initialData} />
       </div>
     </div>
