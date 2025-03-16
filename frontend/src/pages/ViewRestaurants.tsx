@@ -113,42 +113,46 @@ export default function ViewRestaurants({ refresh }: HomeProps) {
   };
 
   return (
-    <div style={{ padding: '1rem', backgroundColor: 'black', height: '100vh' }}>
-      <h2 style={{ color: "white", backgroundColor: 'black', fontSize: "300%" }}>Restaurants</h2>
+    <div style={{ padding: '1rem', height: '100vh' }}>
+      <h2 style={{ color: "white", fontSize: "300%" }}>Restaurants</h2>
 
       {/* Add Restaurant Button */}
-      <button
-        onClick={toggleForm}
-        style={{
-          marginLeft: '1rem',
-          marginRight: '1rem',
-          padding: '0.5rem 1rem',
-          fontSize: '1rem',
-          color: 'white',
-          border: 'none',
-          cursor: 'pointer',
-          borderRadius: '5px',
-        }}
-      >
-        {showForm ? 'Close Form' : 'Add Restaurant'}
-      </button>
-
-      {showForm && (
-        <RestaurantFormPopup
-          onClose={toggleForm}
-          onRestaurantAdded={() => {
-            setShowForm(false);
-            fetchRestaurants();
+      <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem' }}>
+        <button
+          onClick={toggleForm}
+          style={{
+            padding: '0.8rem 1.5rem',
+            fontSize: '1.2rem',
+            color: 'white',
+            border: 'none',
+            cursor: 'pointer',
+            borderRadius: '5px',
+            marginBottom:"17px",
           }}
-        />
-      )}
+        >
+          {showForm ? 'Close Form' : 'Add Restaurant'}
+        </button>
 
-      <button onClick={handleUploadMenuClick} disabled={uploading}>
-        {uploading ? "Processing..." : "Upload Menu"}
-      </button>
+        {/* Upload Menu Button */}
+        <button
+          onClick={handleUploadMenuClick}
+          disabled={uploading}
+          style={{
+            padding: '0.8rem 1.5rem',
+            fontSize: '1.2rem',
+            color: 'white',
+            border: 'none',
+            cursor: uploading ? 'not-allowed' : 'pointer',
+            borderRadius: '5px',
+            marginBottom:"17px",
+          }}
+        >
+          {uploading ? "Processing..." : "Upload Menu"}
+        </button>
+      </div>
 
       {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-      <div style={{ backgroundColor: 'black', display: 'flex', flexWrap: 'wrap' }}>
+      <div style={{ display: 'flex', flexWrap: 'wrap' }}>
         {restaurants.map((restaurant: any) => (
           <RestaurantCard key={restaurant.id} restaurant={restaurant} onRestaurantUpdated={fetchRestaurants} />
         ))}
@@ -156,7 +160,7 @@ export default function ViewRestaurants({ refresh }: HomeProps) {
       {cameraActive && (
         <div style={{
           position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
-          backgroundColor: 'rgba(0,0,0,0.8)', display: 'flex',
+          display: 'flex',
           flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
           zIndex: 1000
         }}>

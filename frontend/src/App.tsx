@@ -24,7 +24,7 @@ function App() {
         {/* Navbar */}
         <nav
           style={{
-            backgroundImage: `url(${backgroundIMG})`,
+            backgroundColor: "black",
             backgroundSize: '50%',
             backgroundPosition: 'center',
             backgroundRepeat: 'repeat',
