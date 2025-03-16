@@ -1,24 +1,22 @@
 import React, { useState, useEffect, useRef } from 'react';
 import RestaurantCard from '../components/RestaurantCard';
-import RestaurantFormPopup from '../components/RestaurantFormPopup';
-import "./Home.css";
+import "./customer.css";
 
-interface HomeProps {
+interface TouristsProps {
   refresh: boolean;
 }
 
-export default function ViewRestaurants({ refresh }: HomeProps) {
-  const [restaurants, setRestaurants] = useState([]);
+export default function Tourists({ refresh }: TouristsProps) {
+  const [restaurants, setRestaurants] = useState<any[]>([]);
   const [uploading, setUploading] = useState(false);
   const [menuJson, setMenuJson] = useState(null);  // JSON from /upload_menu/
-  const [showFormPopup, setShowFormPopup] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [cameraActive, setCameraActive] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const errorTimeoutRef = useRef<number | null>(null);
-  const [showForm, setShowForm] = useState(false);  // State for showing the restaurant form
 
+  // Fetching restaurants
   const fetchRestaurants = async () => {
     try {
       const res = await fetch('http://127.0.0.1:8000/restaurants/');
@@ -96,7 +94,6 @@ export default function ViewRestaurants({ refresh }: HomeProps) {
           errorTimeoutRef.current = null;
         }
         setMenuJson(data);
-        setShowFormPopup(true);
       } catch (error) {
         console.error("Error uploading menu:", error);
         errorTimeoutRef.current = window.setTimeout(() => {
@@ -108,40 +105,9 @@ export default function ViewRestaurants({ refresh }: HomeProps) {
     }
   };
 
-  const toggleForm = () => {
-    setShowForm((prev) => !prev);
-  };
-
   return (
     <div style={{ padding: '1rem', backgroundColor: 'black', height: '100vh' }}>
-      <h2 style={{ color: "white", backgroundColor: 'black', fontSize: "300%" }}>Restaurants</h2>
-
-      {/* Add Restaurant Button */}
-      <button
-        onClick={toggleForm}
-        style={{
-          marginLeft: '1rem',
-          marginRight: '1rem',
-          padding: '0.5rem 1rem',
-          fontSize: '1rem',
-          color: 'white',
-          border: 'none',
-          cursor: 'pointer',
-          borderRadius: '5px',
-        }}
-      >
-        {showForm ? 'Close Form' : 'Add Restaurant'}
-      </button>
-
-      {showForm && (
-        <RestaurantFormPopup
-          onClose={toggleForm}
-          onRestaurantAdded={() => {
-            setShowForm(false);
-            fetchRestaurants();
-          }}
-        />
-      )}
+      <h2 style={{ color: "white", backgroundColor: 'black', fontSize: "300%" }}>Restaurants for Tourists</h2>
 
       <button onClick={handleUploadMenuClick} disabled={uploading}>
         {uploading ? "Processing..." : "Upload Menu"}
@@ -150,9 +116,10 @@ export default function ViewRestaurants({ refresh }: HomeProps) {
       {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
       <div style={{ backgroundColor: 'black', display: 'flex', flexWrap: 'wrap' }}>
         {restaurants.map((restaurant: any) => (
-          <RestaurantCard key={restaurant.id} restaurant={restaurant} onRestaurantUpdated={fetchRestaurants} />
+          <RestaurantCard key={restaurant.id} restaurant={restaurant} />
         ))}
       </div>
+
       {cameraActive && (
         <div style={{
           position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
@@ -169,17 +136,6 @@ export default function ViewRestaurants({ refresh }: HomeProps) {
             Cancel
           </button>
         </div>
-      )}
-      {showFormPopup && menuJson && (
-        <RestaurantFormPopup
-          initialData={menuJson}
-          onClose={() => setShowFormPopup(false)}
-          onRestaurantAdded={() => {
-            setShowFormPopup(false);
-            setMenuJson(null);
-            fetchRestaurants();
-          }}
-        />
       )}
     </div>
   );

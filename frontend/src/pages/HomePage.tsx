@@ -10,7 +10,7 @@ export default function HomePage() {
         {/* Restaurant Owner Card */}
 
         {/* Tourist Card */}
-        <Link to="/tourist" className="cardz">
+        <Link to="/customer" className="cardz">
           <h3 className="card-titlez">I'm a Tourist</h3>
           <p className="card-textz">Browse and translate menus instantly, no language barrier!</p>
         </Link>
@@ -19,6 +19,7 @@ export default function HomePage() {
           <p className="card-textz">Upload and manage your restaurant menus for easy translation.</p>
         </Link>
       </div>
+
     </div>
   );
 }

@@ -4,6 +4,7 @@ import HomePage from './pages/HomePage';
 import ViewRestaurants from './pages/ViewRestaurants';
 import RestaurantForm from './components/RestaurantForm';
 import backgroundIMG from './red.jpg';
+import Customer from './pages/customer';  // Correct lowercase import
 
 const TranslationForm: React.FC = () => {
   return (
@@ -50,7 +51,6 @@ function App() {
             >
               Home
             </Link>
-
           </div>
         </nav>
 
@@ -58,6 +58,7 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/restaurants" element={<ViewRestaurants refresh={refresh} />} />
+            <Route path="/customer" element={<Customer/>} />  {/* Route to lowercase customer.tsx */}
           </Routes>
           <TranslationForm />
         </div>
