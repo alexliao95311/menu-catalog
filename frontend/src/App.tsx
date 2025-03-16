@@ -34,7 +34,7 @@ function App() {
         <nav
           style={{
             backgroundImage: `url(${backgroundIMG})`,
-            backgroundSize: '50%', // Zooms out the image by increasing its size
+            backgroundSize: '50%',
             backgroundPosition: 'center',
             backgroundRepeat: 'repeat',
             height: '10%',
@@ -48,7 +48,8 @@ function App() {
             right: 0,
             zIndex: 1000,
             boxShadow: '0 4px 8px rgba(0, 0, 0, 0.3)',
-            color: '#fff'
+            color: '#fff',
+            fontFamily: 'Poppins, sans-serif', /* Apply Poppins font to navbar */
           }}
         >
           <div className="logo" style={{ fontSize: '1.5rem', fontWeight: 'bold' }}>
@@ -57,13 +58,23 @@ function App() {
           <div>
             <Link
               to="/"
-              style={{ marginRight: '1rem', color: 'white', textDecoration: 'none' }}
+              style={{
+                marginRight: '1rem',
+                color: 'white',
+                textDecoration: 'none',
+                fontFamily: 'Poppins, sans-serif', /* Apply Poppins font to links */
+              }}
             >
               Home
             </Link>
             <Link
               to="/restaurants"
-              style={{ marginRight: '1rem', color: 'white', textDecoration: 'none' }}
+              style={{
+                marginRight: '1rem',
+                color: 'white',
+                textDecoration: 'none',
+                fontFamily: 'Poppins, sans-serif', /* Apply Poppins font to links */
+              }}
             >
               Restaurants
             </Link>
@@ -79,7 +90,8 @@ function App() {
                 cursor: 'pointer',
                 borderRadius: '5px',
                 height: '100%',
-                width: '100%'
+                width: '100%',
+                fontFamily: 'Poppins, sans-serif', /* Apply Poppins font to button */
               }}
             >
               {showForm ? 'Close Form' : 'Add Restaurant'}
