@@ -1,118 +1,126 @@
 /* frontend/src/components/RestaurantForm.css */
 
-/* Global Body Styling */
+/* General Body Styling */
 body {
-    margin: 0;
-    font-family: 'Noto Sans TC', sans-serif; /* Traditional Chinese-inspired font */
-    background-color: white; /* Soft pastel pink background */
-    display: flex;
-    flex-direction: column; /* Layout elements vertically */
-    justify-content: flex-start; /* Keep the page content in a column */
-    align-items: center; /* Center content horizontally */
-    min-height: 100vh; /* Full viewport height */
-    overflow-x: hidden; /* Prevent horizontal scrolling */
-  }
-  
-  /* Main content container */
-  .main-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    padding: 20px;
-    overflow-y: auto; /* Ensure vertical scrolling when needed */
-  }
-  
-  /* Container for the form */
+  margin: 0;
+  font-family: 'Noto Sans TC', sans-serif; /* Traditional Chinese-inspired font */
+  background-color: black; /* Black background */
+  display: flex;
+  flex-direction: column; /* Layout elements vertically */
+  justify-content: flex-start; /* Keep the page content in a column */
+  align-items: center; /* Center content horizontally */
+  min-height: 100vh; /* Full viewport height */
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+  color: white; /* White text */
+}
+
+/* Header Styling */
+h2 {
+  font-size: 2rem;
+  color: white; /* White text */
+  font-family: 'Noto Serif TC', serif; /* Traditional serif font */
+  text-align: center;
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding-bottom: 10px;
+  background-color: black; /* Black background for header */
+}
+
+/* Main content container */
+.main-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 20px;
+  overflow-y: auto; /* Ensure vertical scrolling when needed */
+}
+
+/* Container for the form */
+.restaurant-form {
+  padding: 2rem;
+  border: 2px solid #6a7062; /* Olive gray border for form */
+  background-color: black; /* Black background for form */
+  border-radius: 8px;
+  width: 100%;
+  max-width: 500px; /* Limiting width of form */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center; /* Center form contents */
+}
+
+/* Styling for input and textarea */
+.input-field, .textarea-field {
+  width: 100%;
+  padding: 12px;
+  margin: 12px 0;
+  border: 2px solid white; /* White border */
+  border-radius: 4px;
+  font-size: 1rem;
+  box-sizing: border-box;
+  background-color: black; /* Black background for input fields */
+  color: white; /* White text for input */
+}
+
+/* Add Menu Item Button and Submit Button */
+.add-menu-item-button, .submit-button {
+  background-color: #7b0d1e; /* Crimson red for buttons */
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 1.1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 10px;
+}
+
+/* Hover effects for buttons */
+.add-menu-item-button:hover, .submit-button:hover {
+  background-color: black; 
+  color: white; /* Keep text color white on hover */
+}
+
+/* Add Restaurant Button - Keep text color white on hover */
+.add-restaurant-button:hover {
+  background-color: black; /* Keeping the background black */
+  color: white; /* Ensure the text stays white */
+}
+
+/* Disabled button state */
+button:disabled {
+  background-color: #ddd;
+  cursor: not-allowed;
+}
+
+/* Input Focus Effect */
+input:focus, textarea:focus {
+  border-color: #e3b23c; /* Golden yellow border on focus */
+  outline: none;
+}
+
+
+/* Menu Item Container */
+.menu-item-container {
+  margin-bottom: 1.5rem;
+}
+
+/* Fix for typography */
+h2, h3 {
+  font-family: 'Noto Serif TC', serif;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 1024px) {
   .restaurant-form {
-    padding: 2rem;
-    border: 2px solid #6a7062; /* Olive gray border for form */
-    background-color: #ffffff; /* White background for form */
-    border-radius: 8px;
-    width: 100%;
-    max-width: 500px; /* Limiting width of form */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center; /* Center form contents */
+      padding: 1.5rem; /* Reduced padding for smaller screens */
   }
-  
-  /* Heading styles */
-  h2 {
-    font-size: 2rem;
-    color: #7b0d1e; /* Crimson red */
-    font-family: 'Noto Serif TC', serif; /* Traditional serif font */
+}
+
+@media (max-width: 768px) {
+  .restaurant-form {
+      padding: 1rem; /* Further reduced padding for small screens */
   }
-  
-  h3 {
-    font-size: 1.3rem;
-    color: #6a7062; /* Olive gray */
-    margin-top: 1rem;
-    margin-bottom: 0.5rem;
-  }
-  
-  /* Styling for input and textarea */
-  .input-field, .textarea-field {
-    width: 100%;
-    padding: 12px;
-    margin: 12px 0;
-    border: 2px solid #6a7062; /* Olive gray border */
-    border-radius: 4px;
-    font-size: 1rem;
-    box-sizing: border-box;
-    background-color: white; /* Pastel pink for input background */
-  }
-  
-  /* Menu Item Container */
-  .menu-item-container {
-    margin-bottom: 1.5rem;
-  }
-  
-  /* Add Menu Item Button and Submit Button */
-  .add-menu-item-button, .submit-button {
-    background-color: #7b0d1e; /* Crimson red for buttons */
-    color: white;
-    border: none;
-    padding: 12px 24px;
-    font-size: 1.1rem;
-    border-radius: 4px;
-    cursor: pointer;
-    width: 100%;
-    margin-top: 10px;
-  }
-  
-  .add-menu-item-button:hover, .submit-button:hover {
-    background-color: #051009; /* Dark greenish color on hover */
-  }
-  
-  button:disabled {
-    background-color: #ddd;
-    cursor: not-allowed;
-  }
-  
-  button[type="submit"] {
-    background-color: #7b0d1e; /* Crimson red */
-  }
-  
-  button[type="button"] {
-    background-color: #e3b23c; /* Golden yellow for "Add Another" button */
-  }
-  
-  button[type="button"]:hover {
-    background-color: #6a7062; /* Olive gray for hover state */
-  }
-  
-  button[type="submit"]:hover {
-    background-color: #051009; /* Dark greenish color on hover for submit */
-  }
-  
-  /* Input Focus Effect */
-  input:focus, textarea:focus {
-    border-color: #e3b23c; /* Golden yellow border on focus */
-    outline: none;
-  }
-  
-  /* Fix for typography */
-  h2, h3 {
-    font-family: 'Noto Serif TC', serif;
-  }
-  
+}

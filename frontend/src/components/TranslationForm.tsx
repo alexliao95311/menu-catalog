@@ -20,28 +20,5 @@ export default function TranslationForm() {
     }
   };
 
-  return (
-    <div style={{ padding: '1rem', border: '1px solid #ddd', margin: '1rem' }}>
-      <h3>Translate Menu 翻译菜单</h3>
-      <textarea
-        value={text}
-        onChange={(e) => setText(e.target.value)}
-        placeholder="Enter text to translate..."
-        rows={4}
-        style={{ width: '100%' }}
-      /><br />
-      <select value={targetLanguage} onChange={(e) => setTargetLanguage(e.target.value)}>
-        <option value="zh-CN">Chinese Simplified</option>
-        <option value="zh-TW">Chinese Traditional</option>
-        <option value="en">English</option>
-      </select><br /><br />
-      <button onClick={handleTranslate}>Translate</button>
-      {translatedText && (
-        <div style={{ marginTop: '1rem', padding: '0.5rem', border: '1px solid #ccc' }}>
-          <h4>Translated Text:</h4>
-          <p>{translatedText}</p>
-        </div>
-      )}
-    </div>
-  );
+  
 }

@@ -1,12 +1,8 @@
-/* Root container styling */
 #root {
   margin: 0;
   padding: 0;
   text-align: center;
 }
-
-
-
 
 /* Logo Styling */
 .logo {
@@ -43,9 +39,4 @@
 /* Card Styling */
 .card {
   padding: 2em;
-}
-
-/* "Read the Docs" Styling */
-.read-the-docs {
-  color: #888;
 }
