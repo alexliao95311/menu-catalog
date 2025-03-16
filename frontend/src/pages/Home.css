@@ -11,7 +11,7 @@ body {
     background-color: #051009;
     justify-content: flex-start; /* Align content from the top */
     flex-direction: column;
-    color: #ffffff; /* White text color */
+    color: #050505; /* White text color */
     height: 100vh; /* Ensures the body takes up full viewport height */
     overflow-x: hidden; /* Prevents horizontal scrolling */
 }

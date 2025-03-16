@@ -6,3 +6,4 @@ python-jose[cryptography]
 requests
 aiohttp
 dotenv
+anthropic

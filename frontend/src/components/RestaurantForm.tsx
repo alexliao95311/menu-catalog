@@ -1,15 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './RestaurantForm.css';
+
+interface MenuItem {
+  name: string;
+  description: string;
+  price: string; // keeping as string for input, will convert on submit
+}
 
 interface RestaurantFormProps {
   onRestaurantAdded: () => void;
+  initialData?: {
+    name: string;
+    description: string;
+    menu_items: MenuItem[];
+  };
 }
 
-export default function RestaurantForm({ onRestaurantAdded }: RestaurantFormProps) {
-  const [name, setName] = useState('');
-  const [description, setDescription] = useState('');
-  const [menuItems, setMenuItems] = useState([{ name: '', description: '', price: '' }]);
+export default function RestaurantForm({ onRestaurantAdded, initialData }: RestaurantFormProps) {
+  const [name, setName] = useState(initialData ? initialData.name : '');
+  const [description, setDescription] = useState(initialData ? initialData.description : '');
+  const [menuItems, setMenuItems] = useState<MenuItem[]>(
+    initialData ? initialData.menu_items : [{ name: '', description: '', price: '' }]
+  );
   const [adminPassword, setAdminPassword] = useState('');
+
+  useEffect(() => {
+    if (initialData) {
+      setName(initialData.name);
+      setDescription(initialData.description);
+      setMenuItems(initialData.menu_items);
+    }
+  }, [initialData]);
 
   const handleMenuItemChange = (index: number, field: string, value: string) => {
     const updatedItems = [...menuItems];
@@ -34,12 +55,12 @@ export default function RestaurantForm({ onRestaurantAdded }: RestaurantFormProp
       body: JSON.stringify({
         name,
         description,
-        admin_password: adminPassword,  // Include the admin password here
+        admin_password: adminPassword,
         menu_items: formattedMenuItems,
       }),
     });
     if (res.ok) {
-      // Optionally, clear fields and trigger refresh
+      // Clear fields and trigger refresh
       setName('');
       setDescription('');
       setAdminPassword('');
@@ -97,7 +118,17 @@ export default function RestaurantForm({ onRestaurantAdded }: RestaurantFormProp
             /><br/>
           </div>
         ))}
-        <button type="button" onClick={addMenuItemField} className="add-menu-item-button">Add Another Menu Item</button><br/><br/>
+        <button type="button" onClick={addMenuItemField} className="add-menu-item-button">
+          Add Another Menu Item
+        </button><br/><br/>
+        <input 
+          type="password" 
+          placeholder="Admin Password" 
+          value={adminPassword} 
+          onChange={(e) => setAdminPassword(e.target.value)}
+          required
+          className="input-field"
+        /><br/>
         <button type="submit" className="submit-button">Add Restaurant</button>
       </form>
     </div>

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Home from './pages/Home';
 import RestaurantForm from './components/RestaurantForm';
 import TranslationForm from './components/TranslationForm';
-import backgroundIMG from '/Users/sanjanagowda/menu-catalog/frontend/src/pages/red.jpg';
+import backgroundIMG from './pages/red.jpg';
 
 function App() {
   const [showForm, setShowForm] = useState(false);
