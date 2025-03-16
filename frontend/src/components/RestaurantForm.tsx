@@ -76,12 +76,12 @@ export default function RestaurantForm({ onRestaurantAdded, onClose, initialData
             required
             className="input-field"
           /><br/>
-          <textarea 
+          <input 
             placeholder="Description" 
             value={description} 
             onChange={(e) => setDescription(e.target.value)}
             required
-            className="textarea-field"
+            className="input-field"
           /><br/>
           <h3>Menu Items</h3>
           {menuItems.map((item, index) => (
