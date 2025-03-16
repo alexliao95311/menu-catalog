@@ -66,8 +66,6 @@ export default function RestaurantForm({ onRestaurantAdded, onClose, initialData
   return (
     <div className="popup-overlay">
       <div className="popup-container">
-        {/* Close Button */}
-        <button onClick={onClose} className="close-button">X</button>
         <form onSubmit={handleSubmit} className="restaurant-form">
           <h2>Add Restaurant</h2>
           <input 

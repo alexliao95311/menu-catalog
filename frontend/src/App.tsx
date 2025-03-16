@@ -5,6 +5,7 @@ import ViewRestaurants from './pages/ViewRestaurants';
 import RestaurantForm from './components/RestaurantForm';
 import backgroundIMG from './red.jpg';
 import AboutPage from './pages/About';  // Adjusted import path
+import Customer from './pages/customer';  // Correct lowercase import
 
 const TranslationForm: React.FC = () => {
   return (
@@ -51,7 +52,6 @@ function App() {
             >
               Home
             </Link>
-
             <Link
               to="/about"
               style={{ marginRight: '1rem', color: 'white', textDecoration: 'none', fontSize: "20px" }}
@@ -66,6 +66,7 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/restaurants" element={<ViewRestaurants refresh={refresh} />} />
             <Route path="/about" element={<AboutPage />} /> {/* About page route added */}
+            <Route path="/customer" element={<Customer/>} />  {/* Route to lowercase customer.tsx */}
           </Routes>
           <TranslationForm />
         </div>

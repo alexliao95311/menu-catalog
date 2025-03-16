@@ -40,8 +40,7 @@ h2 {
   outline: 3px solid rgb(95, 6, 6); /* Red outline with 3px thickness */
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  height: 320px; /* Increase height */
-  width: 320px; /* Increase width */
+  
 }
 
 .card:hover {

@@ -70,11 +70,11 @@ export default function RestaurantEditForm({ restaurant, onEditComplete }: Resta
         required 
         className="input-field"
       /><br/>
-      <textarea 
+      <input
         value={description} 
         onChange={(e) => setDescription(e.target.value)}
         required
-        className="textarea-field"
+        className="input-field"
       /><br/>
       <h4>Menu Items</h4>
       {menuItems.map((item: MenuItemForm, index: number) => (
@@ -105,9 +105,8 @@ export default function RestaurantEditForm({ restaurant, onEditComplete }: Resta
         </div>
       ))}
       <button type="button" onClick={addMenuItemField} className="add-menu-item-button">Add Another Menu Item</button><br/><br/>
-      <button type="submit" className="submit-button">Update Restaurant</button>
       {/* Input for admin password required for editing */}
-      <input 
+      <input className="input-field"
         type="password" 
         placeholder="Enter Admin Password" 
         value={adminPassword} 
@@ -115,7 +114,7 @@ export default function RestaurantEditForm({ restaurant, onEditComplete }: Resta
         required
       /><br/><br/>
       
-      <button type="submit">Update Restaurant</button>
+      <button type="submit" className="submit-button">Update Restaurant</button>
     </form>
   );
 }
