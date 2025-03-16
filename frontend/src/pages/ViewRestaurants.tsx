@@ -113,8 +113,8 @@ export default function ViewRestaurants({ refresh }: HomeProps) {
   };
 
   return (
-    <div style={{ padding: '1rem', backgroundColor: 'black', height: '100vh' }}>
-      <h2 style={{ color: "white", backgroundColor: 'black', fontSize: "300%" }}>Restaurants</h2>
+    <div style={{ padding: '1rem', height: '100vh' }}>
+      <h2 style={{ color: "white", fontSize: "300%" }}>Restaurants</h2>
 
       {/* Add Restaurant Button */}
       <button
@@ -148,7 +148,7 @@ export default function ViewRestaurants({ refresh }: HomeProps) {
       </button>
 
       {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-      <div style={{ backgroundColor: 'black', display: 'flex', flexWrap: 'wrap' }}>
+      <div style={{display: 'flex', flexWrap: 'wrap' }}>
         {restaurants.map((restaurant: any) => (
           <RestaurantCard key={restaurant.id} restaurant={restaurant} onRestaurantUpdated={fetchRestaurants} />
         ))}
