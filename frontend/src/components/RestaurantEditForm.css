@@ -1,19 +1,20 @@
 /* Form Styling */
 .restaurant-edit-form {
-  background-color: #f8e5ee; /* Pastel pink background */
+  background-color: black; /* Black background */
   padding: 2rem;
   margin: 2rem auto;
   border-radius: 12px; /* More rounded corners */
+  border: 1px solid white; /* White border around the form */
   width: 50%;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Slightly stronger shadow */
   font-family: 'Noto Sans TC', sans-serif;
-  color: #051009; /* Dark greenish text color */
+  color: white; /* White text */
 }
 
 /* Heading Styling */
 .restaurant-edit-form h3 {
   text-align: center;
-  color: #7b0d1e; /* Crimson red for the heading */
+  color: white; /* White text */
   font-size: 1.8rem;
   margin-bottom: 1rem;
 }
@@ -26,7 +27,8 @@
   border-radius: 8px; /* More rounded corners */
   margin-bottom: 1rem;
   font-size: 1rem;
-  color: #051009; /* Dark greenish */
+  color: white; /* White text */
+  background-color: black; /* Black background for input */
 }
 
 .input-field:focus, .textarea-field:focus {
@@ -37,7 +39,7 @@
 /* Buttons */
 button {
   background-color: #7b0d1e; /* Crimson red background */
-  color: #f8e5ee; /* Pastel pink text */
+  color: white; /* White text */
   padding: 12px 24px; /* Slightly more padding for a more refined look */
   border: none;
   border-radius: 8px; /* More rounded corners */
@@ -49,7 +51,7 @@ button {
 
 button:hover {
   background-color: #e3b23c; /* Golden yellow hover effect */
-  color: #051009; /* Dark greenish text on hover */
+  color: black; /* Dark text on hover */
 }
 
 /* Menu Item Fields */
@@ -73,7 +75,7 @@ button:hover {
 /* Add Menu Item Button */
 .add-menu-item-button {
   background-color: #e3b23c; /* Golden yellow */
-  color: #051009;
+  color: black; /* Black text */
   padding: 10px 20px; /* Slightly more padding */
   border: none;
   border-radius: 8px; /* More rounded corners */
@@ -84,12 +86,12 @@ button:hover {
 
 .add-menu-item-button:hover {
   background-color: #7b0d1e; /* Crimson red when hovered */
-  color: #f8e5ee; /* Pastel pink text */
+  color: white; /* White text on hover */
 }
 
 /* Form Responsive Design */
 @media (max-width: 768px) {
   .restaurant-edit-form {
-      width: 90%;
+      width: 90%; /* Form width becomes smaller on mobile */
   }
 }
