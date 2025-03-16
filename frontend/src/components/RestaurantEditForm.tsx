@@ -70,11 +70,11 @@ export default function RestaurantEditForm({ restaurant, onEditComplete }: Resta
         required 
         className="input-field"
       /><br/>
-      <textarea 
+      <input
         value={description} 
         onChange={(e) => setDescription(e.target.value)}
         required
-        className="textarea-field"
+        className="input-field"
       /><br/>
       <h4>Menu Items</h4>
       {menuItems.map((item: MenuItemForm, index: number) => (
