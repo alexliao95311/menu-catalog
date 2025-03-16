@@ -25,7 +25,7 @@ function App() {
         {/* Navbar */}
         <nav
           style={{
-            backgroundImage: `url(${backgroundIMG})`,
+            backgroundColor: "black",
             backgroundSize: '50%',
             backgroundPosition: 'center',
             backgroundRepeat: 'repeat',
@@ -44,18 +44,18 @@ function App() {
           }}
         >
           <div className="logo" style={{ fontSize: '1.5rem', fontWeight: 'bold' }}>
-            <h1 style={{ fontSize: '200%' }}>Digital Menu App</h1>
+            <h1 style={{ fontSize: '200%' }}>DigiMenu</h1>
           </div>
           <div>
             <Link
               to="/"
-              style={{ marginRight: '1rem', color: 'white', textDecoration: 'none', fontSize: "20px" }}
+              style={{ marginRight: '1rem', color: 'white', textDecoration: 'none', fontSize: "25px", margin:"40px" }}
             >
               Home
             </Link>
             <Link
               to="/about"
-              style={{ marginRight: '1rem', color: 'white', textDecoration: 'none', fontSize: "20px" }}
+              style={{ marginRight: '1rem', color: 'white', textDecoration: 'none', fontSize: "25px" }}
             >
               About
             </Link>

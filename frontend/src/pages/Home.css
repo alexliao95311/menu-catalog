@@ -10,6 +10,7 @@ body {
   height: 100vh;
   overflow-x: hidden;
   background: url('./redlantern.jpeg') no-repeat center center/cover;
+  
 }
 
 /* Header Styling */
