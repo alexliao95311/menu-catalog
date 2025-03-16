@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import ViewRestaurants from './pages/ViewRestaurants';
+import AboutPage from './pages/About';
 import RestaurantForm from './components/RestaurantForm';
 import backgroundIMG from './red.jpg';
 
@@ -92,6 +93,7 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/restaurants" element={<ViewRestaurants refresh={refresh} />} />
+            <Route path="/about" element={<AboutPage refresh={refresh} />} />
           </Routes>
           <TranslationForm />
         </div>

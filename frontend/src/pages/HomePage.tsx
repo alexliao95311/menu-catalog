@@ -9,6 +9,9 @@ export default function HomePage() {
       <Link to="/restaurants">
         <button>View Restaurants</button>
       </Link>
+      <Link to='/about'>
+        <button>About Us</button>
+      </Link>
     </div>
   );
 }
