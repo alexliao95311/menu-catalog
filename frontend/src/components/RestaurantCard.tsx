@@ -1,6 +1,6 @@
-// frontend/src/components/RestaurantCard.tsx
 import React, { useState } from 'react';
 import RestaurantEditForm from './RestaurantEditForm';
+import './RestaurantCard.css';  // Make sure this file contains the styles below
 
 interface RestaurantCardProps {
   restaurant: any;
@@ -11,6 +11,8 @@ export default function RestaurantCard({ restaurant, onRestaurantUpdated }: Rest
   const [editing, setEditing] = useState(false);
   const [translatedMenu, setTranslatedMenu] = useState<string | null>(null);
   const [translating, setTranslating] = useState(false);
+  // New state for the selected language
+  const [targetLanguage, setTargetLanguage] = useState<string>("zh-CN");
 
   // Function to handle translation of the restaurant's menu items.
   const handleTranslateMenu = async () => {
@@ -28,7 +30,7 @@ export default function RestaurantCard({ restaurant, onRestaurantUpdated }: Rest
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           text: menuText,
-          target_language: "zh-CN"  // Change target_language as needed ("zh-TW" or "en")
+          target_language: targetLanguage  // Use the selected language from state
         })
       });
       if (response.ok) {
@@ -47,7 +49,7 @@ export default function RestaurantCard({ restaurant, onRestaurantUpdated }: Rest
   const toggleEdit = () => setEditing((prev) => !prev);
 
   return (
-    <div className="card" style={{}}>
+    <div className="card">
       <h3>{restaurant.name}</h3>
       <p>{restaurant.description}</p>
       {restaurant.menu_items && restaurant.menu_items.length > 0 ? (
@@ -64,6 +66,23 @@ export default function RestaurantCard({ restaurant, onRestaurantUpdated }: Rest
       ) : (
         <p>No menu items available.</p>
       )}
+      
+      <div className="translate-section">
+        <label htmlFor={`lang-select-${restaurant.id}`} className="translate-label">
+          Translate to:
+        </label>
+        <select
+          id={`lang-select-${restaurant.id}`}
+          className="translate-dropdown"
+          value={targetLanguage}
+          onChange={(e) => setTargetLanguage(e.target.value)}
+        >
+          <option value="zh-CN">Chinese Simplified</option>
+          <option value="zh-TW">Chinese Traditional</option>
+          <option value="en">English</option>
+        </select>
+      </div>
+      
       <button onClick={handleTranslateMenu} disabled={translating} style={{ marginRight: "1rem" }}>
         {translating ? "Translating..." : "Translate Menu"}
       </button>
@@ -71,8 +90,8 @@ export default function RestaurantCard({ restaurant, onRestaurantUpdated }: Rest
         {editing ? "Cancel Edit" : "Edit"}
       </button>
       {translatedMenu && (
-        <div style={{}}>
-          <h4>Translated Menu (Chinese Simplified):</h4>
+        <div>
+          <h4>Translated Menu ({targetLanguage}):</h4>
           <pre style={{ whiteSpace: "pre-wrap" }}>{translatedMenu}</pre>
         </div>
       )}

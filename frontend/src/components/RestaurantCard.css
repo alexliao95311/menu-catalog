@@ -1,0 +1,21 @@
+/* Add styling for the translate dropdown */
+.translate-section {
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+  }
+  
+  .translate-label {
+    margin-right: 0.5rem;
+    font-size: 1rem;
+    color: #fff;
+  }
+  
+  .translate-dropdown {
+    padding: 0.3rem 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    color: #000;
+  }
