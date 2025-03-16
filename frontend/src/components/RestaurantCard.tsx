@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import { QRCodeCanvas } from 'qrcode.react';
 import RestaurantEditForm from './RestaurantEditForm';
-import './RestaurantCard.css';  // Make sure this file contains the styles below
+import './RestaurantCard.css'; // Ensure this file contains your custom styles
 
 interface RestaurantCardProps {
   restaurant: any;
@@ -11,13 +12,12 @@ export default function RestaurantCard({ restaurant, onRestaurantUpdated }: Rest
   const [editing, setEditing] = useState(false);
   const [translatedMenu, setTranslatedMenu] = useState<string | null>(null);
   const [translating, setTranslating] = useState(false);
-  // New state for the selected language
   const [targetLanguage, setTargetLanguage] = useState<string>("zh-CN");
+  const [showQrModal, setShowQrModal] = useState(false);
 
   // Function to handle translation of the restaurant's menu items.
   const handleTranslateMenu = async () => {
     setTranslating(true);
-    // Combine menu items into one text block.
     const menuText = restaurant.menu_items && restaurant.menu_items.length > 0 
       ? restaurant.menu_items
           .map((item: any) => `Dish: ${item.name}\nDescription: ${item.description}\nPrice: ${item.price}`)
@@ -30,7 +30,7 @@ export default function RestaurantCard({ restaurant, onRestaurantUpdated }: Rest
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           text: menuText,
-          target_language: targetLanguage  // Use the selected language from state
+          target_language: targetLanguage  
         })
       });
       if (response.ok) {
@@ -47,6 +47,9 @@ export default function RestaurantCard({ restaurant, onRestaurantUpdated }: Rest
   };
 
   const toggleEdit = () => setEditing((prev) => !prev);
+
+  // Create a unique URL for this restaurant's menu.
+  const qrUrl = `${window.location.origin}/restaurants/${restaurant.id}`;
 
   return (
     <div className="card">
@@ -66,7 +69,7 @@ export default function RestaurantCard({ restaurant, onRestaurantUpdated }: Rest
       ) : (
         <p>No menu items available.</p>
       )}
-      
+
       <div className="translate-section">
         <label htmlFor={`lang-select-${restaurant.id}`} className="translate-label">
           Translate to:
@@ -82,13 +85,17 @@ export default function RestaurantCard({ restaurant, onRestaurantUpdated }: Rest
           <option value="en">English</option>
         </select>
       </div>
-      
+
       <button onClick={handleTranslateMenu} disabled={translating} style={{ marginRight: "1rem" }}>
         {translating ? "Translating..." : "Translate Menu"}
       </button>
-      <button onClick={toggleEdit}>
+      <button onClick={toggleEdit} style={{ marginRight: "1rem" }}>
         {editing ? "Cancel Edit" : "Edit"}
       </button>
+      <button onClick={() => setShowQrModal(true)}>
+        Generate QR Code
+      </button>
+
       {translatedMenu && (
         <div>
           <h4>Translated Menu ({targetLanguage}):</h4>
@@ -103,6 +110,16 @@ export default function RestaurantCard({ restaurant, onRestaurantUpdated }: Rest
             onRestaurantUpdated();
           }}
         />
+      )}
+      {showQrModal && (
+        <div className="popup-overlay">
+          <div className="popup-container">
+            <button onClick={() => setShowQrModal(false)} className="close-button">X</button>
+            <h3>Scan to view menu</h3>
+            <QRCodeCanvas value={qrUrl} size={200} />
+            <p>{qrUrl}</p>
+          </div>
+        </div>
       )}
     </div>
   );

@@ -21,9 +21,15 @@ def get_restaurants(db: Session = Depends(get_db)):
     restaurants = db.query(Restaurant).all()
     return restaurants
 
+@router.get("/{restaurant_id}", response_model=RestaurantSchema)
+def get_restaurant_detail(restaurant_id: int, db: Session = Depends(get_db)):
+    restaurant = db.query(Restaurant).filter(Restaurant.id == restaurant_id).first()
+    if not restaurant:
+        raise HTTPException(status_code=404, detail="Restaurant not found")
+    return restaurant
+
 @router.post("/", response_model=RestaurantSchema)
 def create_restaurant(restaurant: RestaurantCreate, db: Session = Depends(get_db)):
-    # If an admin password is not provided, generate one.
     admin_password = restaurant.admin_password if restaurant.admin_password else secrets.token_hex(4)
     new_restaurant = Restaurant(
         name=restaurant.name,
@@ -49,20 +55,16 @@ def update_restaurant(restaurant_id: int, restaurant_update: RestaurantCreate, d
     if not restaurant:
         raise HTTPException(status_code=404, detail="Restaurant not found")
     
-    # Ensure the client provides the correct admin password.
     if not restaurant_update.admin_password or restaurant_update.admin_password != restaurant.admin_password:
         raise HTTPException(status_code=403, detail="Invalid admin password")
 
-    # Update basic fields.
     restaurant.name = restaurant_update.name
     restaurant.description = restaurant_update.description
 
-    # Remove all existing menu items.
     for menu_item in restaurant.menu_items:
         db.delete(menu_item)
     restaurant.menu_items = []
 
-    # Add new menu items from the update payload.
     if restaurant_update.menu_items:
         for item in restaurant_update.menu_items:
             new_menu_item = MenuItem(

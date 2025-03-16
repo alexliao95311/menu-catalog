@@ -1,0 +1,13 @@
+/* RestaurantDetail.css */
+
+/* A subtle black overlay behind the details */
+.detail-overlay {
+    background-color: rgba(0, 0, 0, 0.7); /* semi-transparent black */
+    padding: 1.5rem;
+    margin: 1rem;
+    border-radius: 8px;
+    color: white; /* ensure text remains readable on dark background */
+    max-width: 800px; /* optional max width if you want to limit content width */
+    margin-left: auto; /* center horizontally if desired */
+    margin-right: auto;
+  }
