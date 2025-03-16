@@ -27,6 +27,10 @@ function App() {
     setRefresh((prev) => !prev);
   };
 
+  const closeForm = () => {
+    setShowForm(false);
+  };
+
   return (
     <Router>
       <div>
@@ -101,7 +105,12 @@ function App() {
 
         {/* Prevent content from being hidden under fixed navbar */}
         <div style={{ paddingTop: '80px' }}>
-          {showForm && <RestaurantForm onRestaurantAdded={handleRestaurantAdded} />}
+          {showForm && (
+            <RestaurantForm
+              onRestaurantAdded={handleRestaurantAdded}
+              onClose={closeForm} // Corrected line!
+            />
+          )}
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/restaurants" element={<ViewRestaurants refresh={refresh} />} />

@@ -1,14 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './RestaurantForm.css';
 
 interface MenuItem {
   name: string;
   description: string;
-  price: string; // keeping as string for input, will convert on submit
+  price: string;
 }
 
 interface RestaurantFormProps {
   onRestaurantAdded: () => void;
+  onClose: () => void;  // Close function passed from Home
   initialData?: {
     name: string;
     description: string;
@@ -16,21 +17,13 @@ interface RestaurantFormProps {
   };
 }
 
-export default function RestaurantForm({ onRestaurantAdded, initialData }: RestaurantFormProps) {
+export default function RestaurantForm({ onRestaurantAdded, onClose, initialData }: RestaurantFormProps) {
   const [name, setName] = useState(initialData ? initialData.name : '');
   const [description, setDescription] = useState(initialData ? initialData.description : '');
   const [menuItems, setMenuItems] = useState<MenuItem[]>(
     initialData ? initialData.menu_items : [{ name: '', description: '', price: '' }]
   );
   const [adminPassword, setAdminPassword] = useState('');
-
-  useEffect(() => {
-    if (initialData) {
-      setName(initialData.name);
-      setDescription(initialData.description);
-      setMenuItems(initialData.menu_items);
-    }
-  }, [initialData]);
 
   const handleMenuItemChange = (index: number, field: string, value: string) => {
     const updatedItems = [...menuItems];
@@ -60,7 +53,6 @@ export default function RestaurantForm({ onRestaurantAdded, initialData }: Resta
       }),
     });
     if (res.ok) {
-      // Clear fields and trigger refresh
       setName('');
       setDescription('');
       setAdminPassword('');
@@ -72,65 +64,69 @@ export default function RestaurantForm({ onRestaurantAdded, initialData }: Resta
   };
 
   return (
-    <div className="main-content">
-      <form onSubmit={handleSubmit} className="restaurant-form">
-        <h2>Add Restaurant</h2>
-        <input 
-          type="text" 
-          placeholder="Restaurant Name" 
-          value={name} 
-          onChange={(e) => setName(e.target.value)}
-          required
-          className="input-field"
-        /><br/>
-        <textarea 
-          placeholder="Description" 
-          value={description} 
-          onChange={(e) => setDescription(e.target.value)}
-          required
-          className="textarea-field"
-        /><br/>
-        <h3>Menu Items</h3>
-        {menuItems.map((item, index) => (
-          <div key={index} className="menu-item-container">
-            <input 
-              type="text" 
-              placeholder="Dish Name" 
-              value={item.name} 
-              onChange={(e) => handleMenuItemChange(index, 'name', e.target.value)}
-              required
-              className="input-field"
-            /><br/>
-            <input 
-              type="text" 
-              placeholder="Dish Description" 
-              value={item.description} 
-              onChange={(e) => handleMenuItemChange(index, 'description', e.target.value)}
-              className="input-field"
-            /><br/>
-            <input 
-              type="number" 
-              placeholder="Price" 
-              value={item.price} 
-              onChange={(e) => handleMenuItemChange(index, 'price', e.target.value)}
-              required
-              className="input-field"
-            /><br/>
-          </div>
-        ))}
-        <button type="button" onClick={addMenuItemField} className="add-menu-item-button">
-          Add Another Menu Item
-        </button><br/><br/>
-        <input 
-          type="password" 
-          placeholder="Admin Password" 
-          value={adminPassword} 
-          onChange={(e) => setAdminPassword(e.target.value)}
-          required
-          className="input-field"
-        /><br/>
-        <button type="submit" className="submit-button">Add Restaurant</button>
-      </form>
+    <div className="popup-overlay">
+      <div className="popup-container">
+        {/* Close Button */}
+        <button onClick={onClose} className="close-button">X</button>
+        <form onSubmit={handleSubmit} className="restaurant-form">
+          <h2>Add Restaurant</h2>
+          <input 
+            type="text" 
+            placeholder="Restaurant Name" 
+            value={name} 
+            onChange={(e) => setName(e.target.value)}
+            required
+            className="input-field"
+          /><br/>
+          <textarea 
+            placeholder="Description" 
+            value={description} 
+            onChange={(e) => setDescription(e.target.value)}
+            required
+            className="textarea-field"
+          /><br/>
+          <h3>Menu Items</h3>
+          {menuItems.map((item, index) => (
+            <div key={index} className="menu-item-container">
+              <input 
+                type="text" 
+                placeholder="Dish Name" 
+                value={item.name} 
+                onChange={(e) => handleMenuItemChange(index, 'name', e.target.value)}
+                required
+                className="input-field"
+              /><br/>
+              <input 
+                type="text" 
+                placeholder="Dish Description" 
+                value={item.description} 
+                onChange={(e) => handleMenuItemChange(index, 'description', e.target.value)}
+                className="input-field"
+              /><br/>
+              <input 
+                type="number" 
+                placeholder="Price" 
+                value={item.price} 
+                onChange={(e) => handleMenuItemChange(index, 'price', e.target.value)}
+                required
+                className="input-field"
+              /><br/>
+            </div>
+          ))}
+          <button type="button" onClick={addMenuItemField} className="add-menu-item-button">
+            Add Another Menu Item
+          </button><br/><br/>
+          <input 
+            type="password" 
+            placeholder="Admin Password" 
+            value={adminPassword} 
+            onChange={(e) => setAdminPassword(e.target.value)}
+            required
+            className="input-field"
+          /><br/>
+          <button type="submit" className="submit-button">Add Restaurant</button>
+        </form>
+      </div>
     </div>
   );
 }
