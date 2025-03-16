@@ -15,6 +15,9 @@ export default function RestaurantCard({ restaurant, onRestaurantUpdated }: Rest
   const [targetLanguage, setTargetLanguage] = useState<string>("zh-CN");
   const [showQrModal, setShowQrModal] = useState(false);
 
+  // Use Vite's environment variable system
+  const API_URL = import.meta.env.VITE_REACT_APP_API_URL || "http://127.0.0.1:8000";
+  console.log(API_URL)
   // Function to handle translation of the restaurant's menu items.
   const handleTranslateMenu = async () => {
     setTranslating(true);
@@ -25,7 +28,7 @@ export default function RestaurantCard({ restaurant, onRestaurantUpdated }: Rest
       : "No menu items available.";
 
     try {
-      const response = await fetch("http://127.0.0.1:8000/translate/", {
+      const response = await fetch(`${API_URL}/translate/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

@@ -18,6 +18,9 @@ interface Restaurant {
   menu_items: MenuItem[];
 }
 
+// Read the API URL from the environment variables (Vite must have VITE_REACT_APP_API_URL set)
+const API_URL = import.meta.env.VITE_REACT_APP_API_URL || "http://127.0.0.1:8000";
+
 export default function RestaurantDetail() {
   const { id } = useParams<{ id: string }>();
   const [restaurant, setRestaurant] = useState<Restaurant | null>(null);
@@ -30,7 +33,7 @@ export default function RestaurantDetail() {
       setLoading(false);
       return;
     }
-    fetch(`http://127.0.0.1:8000/restaurants/${id}`)
+    fetch(`${API_URL}/restaurants/${id}`)
       .then(response => {
         if (!response.ok) {
           throw new Error(`Server error: ${response.status}`);

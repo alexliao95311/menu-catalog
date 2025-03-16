@@ -7,6 +7,9 @@ interface HomeProps {
   refresh: boolean;
 }
 
+// Use Vite's environment variable system
+const API_URL = import.meta.env.VITE_REACT_APP_API_URL || "http://127.0.0.1:8000";
+
 export default function ViewRestaurants({ refresh }: HomeProps) {
   const [restaurants, setRestaurants] = useState([]);
   const [uploading, setUploading] = useState(false);
@@ -21,7 +24,7 @@ export default function ViewRestaurants({ refresh }: HomeProps) {
 
   const fetchRestaurants = async () => {
     try {
-      const res = await fetch('http://127.0.0.1:8000/restaurants/');
+      const res = await fetch(`${API_URL}/restaurants/`);
       const data = await res.json();
       setRestaurants(data);
     } catch (error) {
@@ -78,7 +81,7 @@ export default function ViewRestaurants({ refresh }: HomeProps) {
       setUploading(true);
 
       try {
-        const response = await fetch('http://127.0.0.1:8000/upload_menu/', {
+        const response = await fetch(`${API_URL}/upload_menu/`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ image: imageDataUrl })
@@ -163,8 +166,8 @@ export default function ViewRestaurants({ refresh }: HomeProps) {
         />
       )}
 
-      {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-      <div style={{display: 'flex', flexWrap: 'wrap' }}>
+      {errorMessage && <p style={{ color: 'red', textAlign: 'center' }}>{errorMessage}</p>}
+      <div style={{ display: 'flex', flexWrap: 'wrap' }}>
         {restaurants.map((restaurant: any) => (
           <RestaurantCard key={restaurant.id} restaurant={restaurant} onRestaurantUpdated={fetchRestaurants} />
         ))}

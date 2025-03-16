@@ -6,6 +6,9 @@ interface TouristsProps {
   refresh: boolean;
 }
 
+// Set the API URL using Vite's env variables.
+const API_URL = import.meta.env.VITE_REACT_APP_API_URL || "http://127.0.0.1:8000";
+
 export default function Tourists({ refresh }: TouristsProps) {
   const [restaurants, setRestaurants] = useState<any[]>([]);
   const [uploading, setUploading] = useState(false);
@@ -19,7 +22,7 @@ export default function Tourists({ refresh }: TouristsProps) {
   // Fetching restaurants
   const fetchRestaurants = async () => {
     try {
-      const res = await fetch('http://127.0.0.1:8000/restaurants/');
+      const res = await fetch(`${API_URL}/restaurants/`);
       const data = await res.json();
       setRestaurants(data);
     } catch (error) {
@@ -76,7 +79,7 @@ export default function Tourists({ refresh }: TouristsProps) {
       setUploading(true);
 
       try {
-        const response = await fetch('http://127.0.0.1:8000/upload_menu/', {
+        const response = await fetch(`${API_URL}/upload_menu/`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ image: imageDataUrl })
@@ -88,7 +91,6 @@ export default function Tourists({ refresh }: TouristsProps) {
 
         const data = await response.json();
 
-        // Clear any pending error message timeout since we have correct data
         if (errorTimeoutRef.current) {
           clearTimeout(errorTimeoutRef.current);
           errorTimeoutRef.current = null;
@@ -110,8 +112,10 @@ export default function Tourists({ refresh }: TouristsProps) {
       <h2 style={{ color: "white", fontSize: "300%" }}>Restaurants for Tourists</h2>
 
       {/* Centered Upload Menu Button */}
-      <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1rem' }}>
-        <button onClick={handleUploadMenuClick} disabled={uploading}
+      <div style={{ width: "100%", display: 'flex', justifyContent: 'center', marginBottom: '1rem' }}>
+        <button 
+          onClick={handleUploadMenuClick} 
+          disabled={uploading}
           style={{
             padding: '0.5rem 1rem',
             fontSize: '1rem',

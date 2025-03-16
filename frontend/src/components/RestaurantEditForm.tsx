@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './RestaurantEditForm.css'; // Import the new CSS file
+import './RestaurantEditForm.css'; // Import the CSS file
 
 interface MenuItemForm {
   name: string;
@@ -41,7 +41,10 @@ export default function RestaurantEditForm({ restaurant, onEditComplete }: Resta
       description: item.description,
       price: parseFloat(item.price),
     }));
-    const res = await fetch(`http://127.0.0.1:8000/restaurants/${restaurant.id}`, {
+    
+    const API_URL = import.meta.env.VITE_REACT_APP_API_URL || "http://127.0.0.1:8000";
+    
+    const res = await fetch(`${API_URL}/restaurants/${restaurant.id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
@@ -104,16 +107,18 @@ export default function RestaurantEditForm({ restaurant, onEditComplete }: Resta
           /><br/>
         </div>
       ))}
-      <button type="button" onClick={addMenuItemField} className="add-menu-item-button">Add Another Menu Item</button><br/><br/>
+      <button type="button" onClick={addMenuItemField} className="add-menu-item-button">
+        Add Another Menu Item
+      </button><br/><br/>
       {/* Input for admin password required for editing */}
-      <input className="input-field"
+      <input 
+        className="input-field"
         type="password" 
         placeholder="Enter Admin Password" 
         value={adminPassword} 
         onChange={(e) => setAdminPassword(e.target.value)}
         required
       /><br/><br/>
-      
       <button type="submit" className="submit-button">Update Restaurant</button>
     </form>
   );
