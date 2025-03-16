@@ -9,7 +9,7 @@ body {
   color: white; /* White text */
   height: 100vh;
   overflow-x: hidden;
-  background: url('src/red.jpg') no-repeat center center/cover;
+  background: url('./redlantern.jpeg') no-repeat center center/cover;
 }
 
 /* Header Styling */

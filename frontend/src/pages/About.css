@@ -1,53 +1,86 @@
+/* Importing font */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
+/* Variables for easy color management */
+:root {
+  --primary-color: #7b0d1e;
+  --hover-border-color: #a8142a;
+  --dark-gray: #111;
+  --light-text: #ccc;
+  --lightest-text: #bbb;
+}
+
+
+/* Full height background with centering */
+body {
+  font-family: 'Poppins', sans-serif;
+  min-height: 100vh; /* Ensures full height of the page */
+  height: 100%; /* Ensures the body takes the full height of the screen */
+  background: url('./redlantern.jpeg') no-repeat center center fixed;
+  background-size: cover; /* Ensures the image covers the whole screen */
+  color: #fff;
+  display: flex;
+  justify-content: center; /* Centers content horizontally */
+  align-items: center; /* Centers content vertically */
+  width: 100%; /* Ensures the body takes full width */
+}
+
+
+/* Container for About Page */
 .about-container {
-  max-width: 900px;
-  margin: auto;
+  max-width: 1200px; /* Limit the width for large screens */
+  width: 100%; /* Ensure the content container uses the full width of the screen */
   padding: 2rem;
   text-align: center;
-  background-color: #000; /* Black Background */
-  color: #fff; /* White Text */
-  min-height: 100vh;
+  min-height: 100vh; /* Make sure content takes full height */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative; /* Keeps it within the normal document flow */
+  z-index: 1; /* Ensures it sits on top of the background image */
 }
 
+/* Title Styles */
 .title {
   font-size: 3rem;
-  font-family: 'Poppins', sans-serif;
   margin-bottom: 2rem;
-  color: #fff;
 }
 
-.card {
-  background: #111; /* Dark Gray Box */
+/* Card Layout */
+.cards {
+  background: var(--dark-gray); /* Dark Gray Box */
   padding: 1.5rem;
-  margin: 2rem 0; /* Increased space between boxes */
   border-radius: 10px;
-  border: 2px solid #7b0d1e; /* Red Border */
+  border: 2px solid var(--primary-color); /* Red Border */
   box-shadow: 2px 2px 10px rgba(255, 255, 255, 0.1);
   transition: box-shadow 0.3s ease-in-out, border 0.3s ease-in-out;
   text-align: left;
   position: relative;
+  width: 100%; /* Make cards responsive */
+  max-width: 900px; /* Limit card width */
 }
 
 .card:hover {
   box-shadow: 4px 4px 20px rgba(255, 255, 255, 0.2);
-  border-color: #a8142a;
+  border-color: var(--hover-border-color);
 }
 
-.info-header {
+/* Card Header */
+.info-headers {
   font-size: 1.5rem;
-  font-family: 'Poppins', sans-serif;
   font-weight: bold;
   color: #fff;
   margin-bottom: 1rem;
-  border-bottom: 2px solid #7b0d1e;
+  border-bottom: 2px solid var(--primary-color);
   padding-bottom: 0.5rem;
 }
 
-p, ul {
+/* Text Styling */
+p,
+ul {
   font-size: 1.1rem;
-  color: #ccc;
-  font-family: 'Poppins', sans-serif;
+  color: var(--light-text);
   text-align: left;
 }
 
@@ -59,6 +92,49 @@ ul {
 li {
   padding: 0.5rem 0;
   font-size: 1.1rem;
-  font-family: 'Poppins', sans-serif;
-  color: #bbb;
-}  
+  color: var(--lightest-text);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+
+  .about-container {
+    padding: 1rem;
+  }
+
+  .title {
+    font-size: 2.5rem;
+  }
+
+  .card {
+    padding: 1rem;
+  }
+
+  .info-header {
+    font-size: 1.3rem;
+  }
+
+  p,
+  ul {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 2rem;
+  }
+
+  .card {
+    padding: 0.8rem;
+  }
+
+  .info-header {
+    font-size: 1.2rem;
+  }
+
+  p,
+  ul {
+    font-size: 0.9rem;
+  }
+}
