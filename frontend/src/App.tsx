@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import ViewRestaurants from './pages/ViewRestaurants';
-import AboutPage from './pages/About';
 import RestaurantForm from './components/RestaurantForm';
 import backgroundIMG from './red.jpg';
 
@@ -16,18 +15,6 @@ const TranslationForm: React.FC = () => {
 
 function App() {
   const [refresh, setRefresh] = useState(false);
-  const toggleForm = () => {
-    setShowForm((prev) => !prev);
-  };
-
-  const handleRestaurantAdded = () => {
-    setShowForm(false);
-    setRefresh((prev) => !prev);
-  };
-
-  const closeForm = () => {
-    setShowForm(false);
-  };
 
   return (
     <Router>
@@ -63,20 +50,14 @@ function App() {
             >
               Home
             </Link>
+
           </div>
         </nav>
 
         <div style={{ paddingTop: '80px' }}>
-          {showForm && (
-            <RestaurantForm
-              onRestaurantAdded={handleRestaurantAdded}
-              onClose={closeForm} // Corrected line!
-            />
-          )}
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/restaurants" element={<ViewRestaurants refresh={refresh} />} />
-            <Route path="/about" element={<AboutPage refresh={refresh} />} />
           </Routes>
           <TranslationForm />
         </div>
