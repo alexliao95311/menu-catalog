@@ -1,72 +1,83 @@
-/* frontend/src/components/RestaurantForm.css */
+/* Combined RestaurantForm and Popup Styles */
 
-/* General Body Styling */
-body {
-  margin: 0;
-  font-family: 'Noto Sans TC', sans-serif; /* Traditional Chinese-inspired font */
-  background-color: black; /* Black background */
+/* Popup Overlay */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
   display: flex;
-  flex-direction: column; /* Layout elements vertically */
-  justify-content: flex-start; /* Keep the page content in a column */
-  align-items: center; /* Center content horizontally */
-  min-height: 100vh; /* Full viewport height */
-  overflow-x: hidden; /* Prevent horizontal scrolling */
-  color: white; /* White text */
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
 }
 
-/* Header Styling */
-h2 {
-  font-size: 2rem;
-  color: white; /* White text */
-  font-family: 'Noto Serif TC', serif; /* Traditional serif font */
+/* Popup Container */
+.popup-container {
+  background: black;
+  padding: 2rem; /* Consistent padding */
+  border-radius: 8px; /* Consistent border radius */
+  position: relative;
+  max-width: 500px;
+  width: 100%;
+  max-height: 80vh;
+  overflow-y: auto; /* Make it scrollable */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Consistent box shadow */
+}
+
+/* Close Button */
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: white;
+  z-index: 1010;
+}
+
+/* Form Styling */
+.restaurant-form {
+  padding: 0; /* Remove padding from form itself, it's in the container */
+  display: flex;
+  flex-direction: column;
+  text-align: center; /* Center form contents */
+}
+
+/* Header Styling within Popup */
+.restaurant-form h2, .restaurant-form h3 {
+  font-size: 2rem; /* Consistent header size */
+  color: white;
+  font-family: 'Noto Serif TC', serif;
   text-align: center;
-  margin-top: 3rem;
-  margin-bottom: 2rem;
+  margin-top: 2rem;
+  margin-bottom: 1.5rem;
   letter-spacing: 1px;
   text-transform: uppercase;
   padding-bottom: 10px;
   background-color: black; /* Black background for header */
 }
 
-/* Main content container */
-.main-content {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  padding: 20px;
-  overflow-y: auto; /* Ensure vertical scrolling when needed */
-}
-
-/* Container for the form */
-.restaurant-form {
-  padding: 2rem;
-  border: 2px solid #6a7062; /* Olive gray border for form */
-  background-color: black; /* Black background for form */
-  border-radius: 8px;
-  width: 100%;
-  max-width: 500px; /* Limiting width of form */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  text-align: center; /* Center form contents */
-}
-
-/* Styling for input and textarea */
+/* Input and Textarea Fields */
 .input-field, .textarea-field {
   width: 100%;
   padding: 12px;
   margin: 12px 0;
-  border: 2px solid white; /* White border */
+  border: 2px solid white;
   border-radius: 4px;
   font-size: 1rem;
   box-sizing: border-box;
-  background-color: black; /* Black background for input fields */
-  color: white; /* White text for input */
+  background-color: black;
+  color: white;
 }
 
 /* Add Menu Item Button and Submit Button */
 .add-menu-item-button, .submit-button {
-  background-color: #7b0d1e; /* Crimson red for buttons */
+  background-color: #7b0d1e;
   color: white;
   border: none;
   padding: 12px 24px;
@@ -79,14 +90,8 @@ h2 {
 
 /* Hover effects for buttons */
 .add-menu-item-button:hover, .submit-button:hover {
-  background-color: black; 
-  color: white; /* Keep text color white on hover */
-}
-
-/* Add Restaurant Button - Keep text color white on hover */
-.add-restaurant-button:hover {
-  background-color: black; /* Keeping the background black */
-  color: white; /* Ensure the text stays white */
+  background-color: black;
+  color: white;
 }
 
 /* Disabled button state */
@@ -97,30 +102,24 @@ button:disabled {
 
 /* Input Focus Effect */
 input:focus, textarea:focus {
-  border-color: #e3b23c; /* Golden yellow border on focus */
+  border-color: #e3b23c;
   outline: none;
 }
-
 
 /* Menu Item Container */
 .menu-item-container {
   margin-bottom: 1.5rem;
 }
 
-/* Fix for typography */
-h2, h3 {
-  font-family: 'Noto Serif TC', serif;
-}
-
 /* Media Queries for Responsiveness */
 @media (max-width: 1024px) {
-  .restaurant-form {
-      padding: 1.5rem; /* Reduced padding for smaller screens */
+  .popup-container {
+    padding: 1.5rem;
   }
 }
 
 @media (max-width: 768px) {
-  .restaurant-form {
-      padding: 1rem; /* Further reduced padding for small screens */
+  .popup-container {
+    padding: 1rem;
   }
 }
