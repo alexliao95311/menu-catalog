@@ -44,8 +44,8 @@ body {
   }
   
   h3 {
-    font-size: 1.3rem;
-    color: #6a7062; /* Olive gray */
+    font-size: 2rem;
+    color: #ffffff; /* Olive gray */
     margin-top: 1rem;
     margin-bottom: 0.5rem;
   }
@@ -54,8 +54,8 @@ body {
   .input-field, .textarea-field {
     width: 100%;
     padding: 12px;
-    margin: 12px 0;
-    border: 2px solid #6a7062; /* Olive gray border */
+    margin: 12px 0; 
+    border: 2px solid #ffffff; /* Olive gray border */
     border-radius: 4px;
     font-size: 1rem;
     box-sizing: border-box;
