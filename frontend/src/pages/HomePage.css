@@ -1,0 +1,84 @@
+/* General Body Styling */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: white; /* White text */
+    height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Homepage Container */
+.homepage-container {
+    text-align: center;
+    margin-top: 5rem;
+    background: url('/red.jpg') no-repeat center center/cover; /* Correct way to set background image */
+}
+
+/* Header Styling */
+h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: white;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    letter-spacing: 1px;
+}
+
+/* Card Container */
+.card-containerz {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+/* Card Styling */
+.cardz {
+    background-color: rgba(3, 3, 3, 0.673); /* Slightly transparent white background */
+    height: 250px;
+    width: 300px;
+    border-radius: 12px;
+    padding: 2rem;
+    text-decoration: none;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    color: white; /* White text */
+    margin: 20px;
+    /* Flexbox to center text both vertically and horizontally */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Vertically center the content */
+    align-items: center; /* Horizontally center the content */
+}
+
+/* Card Hover Effect */
+.cardz:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 10px 30px rgba(255, 69, 0, 0.5);
+}
+
+/* Card Title */
+.card-titlez {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+/* Card Text */
+.card-textz {
+    font-size: 1.5rem;
+    opacity: 0.85;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .card-containerz {
+        flex-direction: column;
+        align-items: center;
+    }
+}
